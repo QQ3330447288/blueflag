@@ -6,41 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
     <meta name="description" content=""><!-- add description message which will be showing on the search-->
     <meta name="keywords" content="蓝色旗帜">
-    <title></title>
+    <meta name="baidu-site-verification" content="Dw5G7xfcTl"/>
+    <link rel="icon" href="{{url_for('static',filename='images/flag.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{url_for('static',filename='images/flag.png')}}" type="image/x-icon">
+    <title>蓝色旗帜</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static',filename='css/thanlon.public.css')}}">
     <style>
-          body{
-    font-family: 'Microsoft YaHei', sans-serif;
-    background: #ededed;
-    }
-    .addboxshadow:hover{
-    box-shadow: 0 2px 3px #888888;
-    }
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: #ededed;
+        }
 
-
-
-
-
-
+        .addboxshadow:hover {
+            box-shadow: 0 2px 3px #888888;
+        }
     </style>
     {% block css %}{% endblock %}
-
-
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top ">
     <div class="container">
         <!--小屏幕导航按钮和logo-->
+
         <div class="navbar-header">
-            <button class="navbar-toggle">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="index.html" class="navbar-brand"><span class="glyphicon glyphicon-flag"></span>蓝色旗帜</a>
+            <a href="index.html" class="navbar-brand"><span class="glyphicon glyphicon-flag"></span>&nbsp;蓝色旗帜</a>
         </div>
         <!--小屏幕导航按钮和logo-->
         <!--导航-->
@@ -48,93 +45,97 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{url_for('home.index')}}" id="item1"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a>
                 </li>
-                <li><a href="home/pro_shows.html" id="item2">互联网新资讯</a></li>
-                <!--<li><a href="home/personal_life.html" id="item5">本站蓝图</a></li>-->
-                <li><a href="home/programer_life.html" id="item3">免费资源</a></li>
-                <li><a href=home/message_board.html" id="item4">项目合作</a></li>
+                <li><a href="{{url_for('home.sourceCode')}}" id="item2">项目源码</a></li>
+                <!--<li><a href="{{url_for('home.cooperation')}}" id="item3">项目合作</a></li>-->
+                <!--<li><a href="{{url_for('home.blueprint')}}" id="item4">本站蓝图</a></li>-->
+                <li><a href="{{url_for('home.aboutUs')}}" id="item5">关于本站</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li style="margin-top: 8px">
                     <div class="input-group" style="width: 250px">
                         <input type="text" class="form-control" placeholder="Search for...">
                         <span class="input-group-btn">
-                            <a href="" class="btn btn-primary" type="button">站内搜索</a>
-                        </span>
+<a href="" class="btn btn-primary" type="button">站内搜索</a>
+</span>
                     </div><!-- /input-group -->
                 </li>
                 <li>
-                    <!--<a href="" style="background-color:#222 " role="button" class="list-group-item" data-toggle="model" data-target="#myModal">-->
-                    <!--<span class="glyphicon glyphicon-user">-->
-                    <!--</span>&nbsp;登录</a>-->
-                    <a href="" style="background-color:#222 " role="button" data-toggle="modal"
-                       data-target="#myModal"><span class="glyphicon glyphicon-user"></span>&nbsp;登录</a>
+                    <a href="{{url_for('home.login')}}" id="item7"><span
+                            class="glyphicon glyphicon-user"></span>&nbsp;登录</a>
                 </li>
                 <li>
-                    <a href="{{url_for('home.register')}}" style="background-color:#222 " role="button" data-toggle="modal"
-                     ><span class="glyphicon glyphicon-plus"></span>&nbsp;注册</a>
+                    <a href="{{url_for('home.register')}}" id="item8"><span
+                            class="glyphicon glyphicon-plus"></span>&nbsp;注册</a>
                 </li>
                 <li>
-                    <a href="" style="background-color:#222 " role="button" data-toggle="modal"
-                       data-target="#myModal"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>
+                    <a href=""><span
+                            class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>
                 </li>
                 <li>
-                    <a href="{{url_for('home.user')}}" style="background-color:#222 " role="button" data-toggle="modal"
-                    ><span class="glyphicon glyphicon-user"></span>&nbsp;会员中心</a>
+                    <a href="{{url_for('home.user')}}" id="item9"><span
+                            class="glyphicon glyphicon-user"></span>&nbsp;会员中心</a>
                 </li>
             </ul>
         </div>
         <!--导航-->
     </div>
 </nav>
+
+
+<!--<nav class="navbar navbar-default navbar-fixed-top">-->
+<!--<div class="container">-->
+<!--&lt;!&ndash;小屏幕导航按钮和logo&ndash;&gt;-->
+<!--<div class="navbar-header">-->
+<!--<button class="navbar-toggle">-->
+<!--<span class="icon-bar"></span>-->
+<!--<span class="icon-bar"></span>-->
+<!--<span class="icon-bar"></span>-->
+<!--</button>-->
+<!--<a href="" class="navbar-brand"><span class="glyphicon glyphicon-flag"></span>蓝色旗帜</a>-->
+<!--</div>-->
+<!--&lt;!&ndash;小屏幕导航按钮和logo&ndash;&gt;-->
+<!--&lt;!&ndash;导航&ndash;&gt;-->
+<!--<div class="navbar-collapse collapse">-->
+<!--<ul class="nav navbar-nav">-->
+<!--<li><a href="{{url_for('home.index')}}" id="item1"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a>-->
+<!--</li>-->
+<!--<li><a href="{{url_for('home.sourceCode')}}" id="item2">项目源码</a></li>-->
+<!--<li><a href="{{url_for('home.cooperation')}}" id="item3">项目合作</a></li>-->
+<!--&lt;!&ndash;<li><a href="{{url_for('home.blueprint')}}" id="item4">本站蓝图</a></li>&ndash;&gt;-->
+<!--<li><a href="{{url_for('home.aboutUs')}}" id="item5">关于本站</a></li>-->
+<!--</ul>-->
+<!--<ul class="nav navbar-nav navbar-right">-->
+<!--<li style="margin-top: 8px">-->
+<!--<div class="input-group" style="width: 250px">-->
+<!--<input type="text" class="form-control" placeholder="Search for...">-->
+<!--<span class="input-group-btn">-->
+<!--<a href="" class="btn btn-primary" type="button">站内搜索</a>-->
+<!--</span>-->
+<!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="{{url_for('home.login')}}" id="item7"><span-->
+<!--class="glyphicon glyphicon-user"></span>&nbsp;登录</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="{{url_for('home.register')}}" id="item8"><span-->
+<!--class="glyphicon glyphicon-plus"></span>&nbsp;注册</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="" ><span-->
+<!--class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="{{url_for('home.user')}}"  id="item9"><span-->
+<!--class="glyphicon glyphicon-user"></span>&nbsp;会员中心</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--&lt;!&ndash;导航&ndash;&gt;-->
+<!--</div>-->
+<!--</nav>-->
 {% block content %}
 {% endblock %}
-<!-- login Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">登录</h4>
-            </div>
-            <div class="modal-body">
-                <form action="#">
-                    <div class="form-group">
-                        <label for="addname">用户名</label>
-                        <input type="text" id="addname" class="form-control" placeholder="用户名">
-                    </div>
-                    <div class="form-group">
-                        <label for="addpassword">用户密码</label>
-                        <input type="text" id="addpassword" class="form-control" placeholder="请输入用户密码">
-                    </div>
-                    <div class="form-group">
-                        <label for="addpassword1">确认用户密码</label>
-                        <input type="text" id="addpassword1" class="form-control" placeholder="请确认输入用户密码">
-                    </div>
-                    <!--<div class="form-group">-->
-                    <!--<label for="addemail">请输入用户邮箱</label>-->
-                    <!--<input type="email" id="addemail" class="form-control" placeholder="请输入用户邮箱">-->
-                    <!--</div>-->
-                    <!--<div class="form-group">-->
-                    <!--<label for="addyonghuzu">所属用户组</label>-->
-                    <!--<select id="addyonghuzu" class="form-control">-->
-                    <!--<option>限制会员</option>-->
-                    <!--<option>新手上路</option>-->
-                    <!--<option>组册会员</option>-->
-                    <!--<option>中级会员</option>-->
-                    <!--<option>高级会员</option>-->
-                    <!--</select>-->
-                    <!--</div>-->
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">登录</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- login Modal -->
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

@@ -6,38 +6,74 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span>&nbsp;会员注册</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span>&nbsp;注册</h3>
                 </div>
                 <div class="panel-body">
-
-                    <form role="form" method="post">
+                    {% for msg in get_flashed_messages(category_filter=["okey"])%}
+                    <p style="color:green">{{msg}}请直接登录<a href="{{url_for('home.login')}}">登录</a>！</p>
+                    {% endfor %}
+                    {% for msg in get_flashed_messages(category_filter=["error"])%}
+                    <p style="color:red">{{msg}}</p>
+                    {% endfor %}
+                    <form method="post">
                         <fieldset>
                             <div class="form-group">
-                                <label for="input_name"><span
-                                        class="glyphicon glyphicon-user"></span>&nbsp;昵称</label>
-                                <input type="text" class="form-control input" placeholder="请输入昵称" autofocus>
+                                <label for=""><span
+                                        class="glyphicon glyphicon-user"></span>&nbsp;{{form.name.label}}</label>
+                                {{form.name}}
+                                {% for err in form.name.errors%}
+                                <div class="col-md-12" style="color: red">
+                                    {{err}}
+                                </div>
+                                {% endfor %}
                             </div>
                             <div class="form-group">
-                                <label for="input_email"><span class="glyphicon glyphicon-envelope"></span>&nbsp;邮箱</label>
-                                <input type="email" class="form-control" placeholder="请输入邮箱">
+                                <label for=""><span
+                                        class="glyphicon glyphicon-phone"></span>&nbsp;{{form.phone.label}}</label>
+                                {{form.phone}}
+                                {% for err in form.phone.errors%}
+                                <div class="col-md-12" style="color: red">
+                                    {{err}}
+                                </div>
+                                {% endfor %}
                             </div>
                             <div class="form-group">
-                                <label for="input_phone"><span class="glyphicon glyphicon-phone"></span>&nbsp;手机号</label>
-                                <input id="input_phone" class="form-control" placeholder="手机" name="phone" type="text"
-                                       value="">
+                                <label for=""><span
+                                        class="glyphicon glyphicon-lock"></span>&nbsp;{{form.pwd.label}}</label>
+                                {{form.pwd}}
+                                {% for err in form.pwd.errors%}
+                                <div class="col-md-12" style="color: red">
+                                    {{err}}
+                                </div>
+                                {% endfor %}
                             </div>
                             <div class="form-group">
-                                <label for="input_password"><span class="glyphicon glyphicon-lock"></span>&nbsp;密码</label>
-                                <input type="password" class="form-control" placeholder="请输入密码">
+                                <label for=""><span
+                                        class="glyphicon glyphicon-lock"></span>&nbsp;{{form.surePwd.label}}</label>
+                                {{form.surePwd}}
+                                {% for err in form.surePwd.errors%}
+                                <div class="col-md-12" style="color: red">
+                                    {{err}}
+                                </div>
+                                {% endfor %}
                             </div>
                             <div class="form-group">
-                                <label for="input_repassword"><span
-                                        class="glyphicon glyphicon-lock"></span>&nbsp;确认密码</label>
-                                <input type="password" class="form-control" placeholder="请确认密码">
-
+                                <label for="input_password"><span
+                                        class="glyphicon glyphicon-lock"></span>&nbsp;{{form.code.label}}</label>
+                                <div class="input-group">
+                                    {{form.code}}
+                                    <span class="input-group-addon">
+										<input type="button" value="获取手机验证码"
+                                               onclick="sendCode(this)" style="border:none">
+                                    </span>
+                                </div>
                             </div>
                             <div class="col-md-12">
-                                <input type="submit" value="注册" class="btn btn-log btn-primary btn-block">
+                                <div class="form-group">
+                                    已有账号，请直接<a href="{{url_for('home.login')}}">登录</a>！
+                                </div>
+                                {{form.csrf_token}}
+                                {{form.submit}}
                             </div>
                         </fieldset>
                     </form>
@@ -48,4 +84,39 @@
 </div>
 {% endblock %}
 {% block js %}
+<script>
+    $(document).ready(function () {
+        $("#item8").addClass("active_diy");
+    });
+
+    function sendCode(input) {
+        var phoneNum = $("#phone").val();
+        // alert(phoneNum);
+        var pattern = /^1[34578]\d{9}$/;
+        if (phoneNum == "" || phoneNum == null || !pattern.test(phoneNum)) {
+            alert("手机号为空或格式错误!");
+            return;
+        } else {
+            input.setAttribute("disabled", "disabled");
+            var count = 60;
+            var time = setInterval(function () {
+                input.value = count + "s";
+                count--;
+                if (count < 0) {
+                    input.removeAttribute("disabled");
+                    clearInterval(time);
+                    input.value = "获取手机验证码";
+                }
+            }, 1000);
+            $.post("/sendCode/", {
+                    phone: phoneNum
+                },
+                function (data, status) {
+                    // alert(status);
+                    alert("验证码已发送，请注意查收！")
+                }
+            )
+        }
+    }
+</script>
 {% endblock %}

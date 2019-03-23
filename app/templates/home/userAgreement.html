@@ -1,0 +1,58 @@
+{% extends 'home/layout.html' %}
+{% block css %}{% endblock %}
+{% block content %}
+<div class="container" style="margin-top: 60px">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">关于本站</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <a href="{{url_for('home.aboutUs')}}" class="list-group-item btn " style="color: red;font-weight: bold;background: #ddd">
+                            &nbsp;&nbsp;用户协议
+                        </a>
+                        <a  href="{{url_for('home.disclaimer')}}" class="list-group-item btn" style="color: red;font-weight: bold;">
+                            &nbsp;&nbsp;免责申明
+                        </a>
+                         <a  href="{{url_for('home.blueprint')}}" class="list-group-item btn" style="color: red;font-weight: bold;">
+                            &nbsp;&nbsp;本站蓝图
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    / 关于本站 / 用户协议
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% for i in range(20)%}
+                        <br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid"
+     style="height: 100px;line-height:100px;color:#b2bcc5;background-color:#414141 ;margin-top: 20px;margin-bottom: 2px">
+    <div class="col-md-12 text-center">
+        Copyright © 2019-&nbsp;&nbsp; 蓝色旗帜 版权所有
+        <a target="_blank_" href="http://www.miit.gov.cn/" style="color:#b2bcc5;">鲁ICP备17023496号-3</a>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152802000084">
+            <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
+            <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $("#item5").addClass("active_diy");
+    })
+</script>
+{% endblock %}

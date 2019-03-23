@@ -180,7 +180,7 @@
         </div>
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">平台运营博主</div>
+                <div class="panel-heading" style="text-align: center">站长简介</div>
                 <div class="panel-body">
 
                 </div>
@@ -279,27 +279,22 @@
         </div>
     </div>
 </div>
-<div class="container-fluid" style="background:#414141;color: #b2bcc5;margin-top: 20px;margin-bottom: 2px">
-    <div class="row">
-        <div class="col-md-12  text-center" style="padding: 30px">
-            <!--<a href="" style="color:#b2bcc5;">免责申明</a>-->
-            <!--<br>-->
-            Copyright © 2018-2019&nbsp; Blue Flag. All Rights Reserved.&nbsp;蓝色旗帜 版权所有&nbsp;
-            <br>
-               <a target="_blank_" href="http://www.miit.gov.cn/" style="color:#b2bcc5;">鲁ICP备17023496号-3</a>
-            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152802000084">
-                <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
-                <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
-            </a>
-            <br>
-        </div>
+<div class="container-fluid"
+     style="height: 100px;line-height:100px;color:#b2bcc5;background-color:#414141 ;margin-top: 20px;margin-bottom: 2px">
+    <div class="col-md-12 text-center">
+        Copyright © 2019-&nbsp;&nbsp; 蓝色旗帜 版权所有
+        <a target="_blank_" href="http://www.miit.gov.cn/" style="color:#b2bcc5;">鲁ICP备17023496号-3</a>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152802000084">
+            <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
+            <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
+        </a>
     </div>
 </div>
 {% endblock %}
 {% block js %}
 <script>
     $(document).ready(function () {
-        $("#item1").addClass("active_diy");
+        $("#item3").addClass("active_diy");
     })
 </script>
 {% endblock %}
