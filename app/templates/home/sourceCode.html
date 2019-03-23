@@ -9,6 +9,7 @@
             </div>
             <div class="panel panel-default text-center">
                 <div class="panel-body ">
+                    {% if 'user' in session %}
                     {% for i in range(40)%}
                     <div class="col-md-3" style="padding: 5px">
                         <a href="">
@@ -17,7 +18,10 @@
                         </a>
                         <p>基于***管理系统</p>
                     </div>
-                    {% endfor %}
+                       {%endfor%}
+                    {% else %}
+                    <div class="col-md-12">您暂时没有查看的权限,<a href="{{url_for('home.login')}}">登录</a>后可查看！</div>
+                    {% endif %}
                 </div>
                 <div class="panel-body">
                     <nav aria-label="...">

@@ -10,7 +10,7 @@
                 </div>
                 <div class="panel-body">
                     {% for msg in get_flashed_messages(category_filter=["okey"])%}
-                    <p style="color:green">{{msg}}请直接登录<a href="{{url_for('home.login')}}">登录</a>！</p>
+                    <p style="color:green">{{msg}}请直接<a href="{{url_for('home.login')}}">登录</a>！</p>
                     {% endfor %}
                     {% for msg in get_flashed_messages(category_filter=["error"])%}
                     <p style="color:red">{{msg}}</p>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    已有账号，请直接<a href="{{url_for('home.login')}}">登录</a>！
+                                    已有账号，请直接<a href="{{url_for('home.login')}}">登录</a>!&nbsp;注册前请您详细阅读本站《<a href="/aboutUs/">用户协议</a>》,如注册,则默认您同意本协议!
                                 </div>
                                 {{form.csrf_token}}
                                 {{form.submit}}

@@ -89,3 +89,44 @@ class RegisterForm(FlaskForm):
         user_count = User.query.filter_by(phone=phone).count()
         if user_count >= 1:
             raise ValidationError('该手机号已经被占用！')
+
+
+class LoginForm(FlaskForm):
+    name = StringField(
+        label='用户名',
+        validators=[
+            DataRequired(),
+            Regexp('^[a-zA-Z][a-zA-Z0-9_]{4,15}$', message="必须字母开头,5-16字节,允许字母数字下划线!")
+        ],
+        render_kw={
+            'class': 'form-control',
+            'autofocus': 'autofocus',
+            'placeholder': '请输入用户名',
+            'maxLength': '15'
+        }
+    )
+    pwd = PasswordField(
+        label='密码',
+        validators=[
+            DataRequired(),
+            Regexp('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$', message='为了账号的安全,密码必须是大小写字母和数字的组合,不能使用特殊字符,长度在6-15之间!')
+        ],
+        render_kw={
+            'class': 'form-control',
+            'placeholder': '请输入密码',
+            'maxLength': '15',
+            'minLength': '6'
+        }
+    )
+    submit = SubmitField(
+        '注册',
+        render_kw={
+            'class': 'btn btn-log btn-primary btn-block'
+        }
+    )
+
+    def validate_name(self, field):
+        name = field.data
+        user_count = User.query.filter_by(name=name).count()
+        if user_count == 0:
+            raise ValidationError('该用户还未注册,请注册后再登录！')

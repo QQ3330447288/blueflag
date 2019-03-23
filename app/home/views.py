@@ -1,15 +1,24 @@
 from . import home
-from flask import render_template, flash, redirect, url_for, session
-from app.home.forms import RegisterForm
+from flask import render_template, flash, redirect, url_for, session, request
+from app.home.forms import RegisterForm, LoginForm
 from app.models import User
 import requests
 from werkzeug.security import generate_password_hash
-import uuid
 from app import db
 import random
-import re
+from functools import wraps
 
 randomCode = str(random.randint(1000, 9999))
+
+
+def userLoginRule(f):
+    @wraps(f)
+    def decoratedFunction(*args, **kwargs):
+        if 'user' not in session:
+            return redirect(url_for('home.login', next=request.url))
+        return f(*args, **kwargs)
+
+    return decoratedFunction
 
 
 @home.route('/register/', methods=['get', 'post'])
@@ -17,9 +26,6 @@ def register():
     registerForm = RegisterForm()
     if registerForm.validate_on_submit():
         formData = registerForm.data
-        # print(formData)
-        # print(type(randomCode))
-        # print(type(formData['code']))
         if randomCode == formData['code']:
             # print("okey!")
             user = User(
@@ -47,9 +53,24 @@ def sendCode():
     return redirect(url_for('home.register'))
 
 
-@home.route('/login/')
+@home.route('/login/', methods=['get', 'post'])
 def login():
-    return render_template('home/login.html')
+    loginForm = LoginForm()
+    loginData = loginForm.data
+    if loginForm.validate_on_submit():
+        user = User.query.filter_by(name=loginData['name']).first()
+        if not user.check_pwd(loginData['pwd']):
+            flash('密码有误，请重新输入!', 'error')
+            redirect(url_for('home.login'))
+        session['user'] = user.name
+        return redirect(url_for('home.index'))
+    return render_template('home/login.html', form=loginForm)
+
+
+@home.route('/logout/')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('home.login'))
 
 
 @home.route('/sourceCode/')
@@ -83,20 +104,24 @@ def index():
 
 
 @home.route('/user/')
+@userLoginRule
 def user():
     return render_template('home/user.html')
 
 
 @home.route('/pwd/')
+@userLoginRule
 def pwd():
     return render_template('home/pwd.html')
 
 
 @home.route('/comment/')
+@userLoginRule
 def comment():
     return render_template('home/comment.html')
 
 
 @home.route('/loginlog/')
+@userLoginRule
 def loginlog():
     return render_template('home/loginlog.html')
