@@ -8,13 +8,16 @@
                 <div class="panel-heading">关于本站</div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <a href="{{url_for('home.aboutUs')}}" class="list-group-item btn " style="color: red;font-weight: bold;background: #ddd">
+                        <a href="{{url_for('home.aboutUs')}}" class="list-group-item btn "
+                           style="font-weight: bold;background: #ddd">
                             &nbsp;&nbsp;用户协议
                         </a>
-                        <a  href="{{url_for('home.disclaimer')}}" class="list-group-item btn" style="color: red;font-weight: bold;">
+                        <a href="{{url_for('home.disclaimer')}}" class="list-group-item btn"
+                           style="font-weight: bold;">
                             &nbsp;&nbsp;免责申明
                         </a>
-                         <a  href="{{url_for('home.blueprint')}}" class="list-group-item btn" style="color: red;font-weight: bold;">
+                        <a href="{{url_for('home.blueprint')}}" class="list-group-item btn"
+                           style="font-weight: bold;">
                             &nbsp;&nbsp;本站蓝图
                         </a>
                     </ul>
@@ -29,10 +32,13 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {% for i in range(20)%}
-                        <br>
-                    {% endfor %}
+                    <h5>1、本站是正规网站，已通过ICP备案和公安网备案，用户可通过底部版权栏查询本站相关信息。</h5>
+                    <h5>2、用户用于注册的个人相关信息，本站均通过加密算法进行加密，切实保护用户的隐私、保障用户的合法权益。</h5>
+                    <h5>3、本站所有用户的信息，不存在倒卖或其它行为。</h5>
+                    <h5>4、请用户规范自己的行为，发表文章或评论中切不可出现反政治、有暴力倾向、恐吓、色情等的危害公共安全的言论。对于违规者，永久封号。对于违法者，将协助警方处理。</对于违反></h5>
+                    <h5>5、特此申明：注册成为本站用户即表示您已同意本协议。</h5>
                 </div>
+                {% for v in range(20)%}<br>{% endfor%}
             </div>
         </div>
     </div>

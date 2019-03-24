@@ -13,37 +13,23 @@
                     <form role="form" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <div class="form-group">
-                                <label for="input_name"><span class="glyphicon glyphicon-user"></span>&nbsp;昵称</label>
-                                <input type="text" class="form-control" placeholder="请输入昵称" autofocus>
+                                <label for="input_name"><span class="glyphicon glyphicon-user"></span>&nbsp;用户名</label>
+                                <input type="text" class="form-control" placeholder="{{session['user']}}" autofocus disabled>
                             </div>
                             <div class="form-group">
                                 <label for="input_email"><span
                                         class="glyphicon glyphicon-envelope"></span>&nbsp;邮箱</label>
-                                <input type="email" class="form-control" placeholder="请输入邮箱">
+                                <input type="email" class="form-control" placeholder="邮箱暂时不可绑定或修改！" disabled>
                             </div>
 
                             <div class="form-group">
                                 <label for="input_phone">
                                     <span class="glyphicon glyphicon-phone"></span>&nbsp;手机号
                                 </label>
-                                <input id="input_phone" class="form-control" placeholder="手机" name="phone" type="text"
-                                       value="">
+                                <input id="input_phone" class="form-control" placeholder="手机号暂时不可修改！" name="phone" type="text"
+                                       value="" disabled>
                             </div>
-                            <div class="form-group">
-                                <label for="input_face">
-                                    <span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;头像
-                                </label>
-                                <br>
-                                <img src=""
-                                     class="img-responsive img-rounded" width="100px">
-                                <img data-src="holder.js/100x100" class="img-responsive img-rounded">
-                                <br>
-                                <div class="form-group">
-                                    <label for="input_info">
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                    </label>
-                                </div>
-                            </div>
+                            <input type="submit" class="btn btn-primary" value="修改" disabled>
                         </fieldset>
                     </form>
                 </div>

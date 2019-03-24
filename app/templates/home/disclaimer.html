@@ -9,14 +9,14 @@
                 <div class="panel-body">
                     <ul class="list-group">
                         <a href="{{url_for('home.aboutUs')}}" class="list-group-item btn "
-                           style="color: red;font-weight: bold;">
+                           style="font-weight: bold;">
                             &nbsp;&nbsp;用户协议
                         </a>
                         <a href="{{url_for('home.disclaimer')}}" class="list-group-item btn"
-                           style="color: red;font-weight: bold;background: #ddd">
+                           style="font-weight: bold;background: #ddd">
                             &nbsp;&nbsp;免责申明
                         </a>
-                           <a  href="{{url_for('home.blueprint')}}" class="list-group-item btn" style="color: red;font-weight: bold;">
+                           <a  href="{{url_for('home.blueprint')}}" class="list-group-item btn" style="font-weight: bold;">
                             &nbsp;&nbsp;本站蓝图
                         </a>
                     </ul>
@@ -31,6 +31,10 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <h5>1、本站定位为互联网信息分享平台，平台项目源码大多免费提供下载。</h5>
+                    <h5>2、项目源码由已申请开发者权限的用户上传，有的需要收取少量费用。</h5>
+                    <h5>3、开发者上传的项目源码，需要通过本平台的审核才能被用户下载。</h5>
+                    <h5>4、开发者上传的项目源码未通过审核，平台将予以驳回，不存储开发者未通过审核的资源。</h5>
                     {% for i in range(20)%}
                     <br>
                     {% endfor %}

@@ -130,3 +130,59 @@ class LoginForm(FlaskForm):
         user_count = User.query.filter_by(name=name).count()
         if user_count == 0:
             raise ValidationError('该用户还未注册,请注册后再登录！')
+
+
+class AlterPwd(FlaskForm):
+    pwd = PasswordField(
+        label='原密码',
+        validators=[
+            DataRequired(),
+            Regexp('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$', message='为了账号的安全,密码必须是大小写字母和数字的组合,不能使用特殊字符,长度在6-15之间!')
+        ],
+        render_kw={
+            'class': 'form-control',
+            'placeholder': '请输入原密码',
+            'maxLength': '15',
+            'minLength': '6'
+        }
+    )
+    newPwd = PasswordField(
+        label='新密码',
+        validators=[
+            DataRequired(),
+            Regexp('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$', message='为了账号的安全,密码必须是大小写字母和数字的组合,不能使用特殊字符,长度在6-15之间!')
+        ],
+        render_kw={
+            'class': 'form-control',
+            'placeholder': '请输入新密码',
+            'maxLength': '15',
+            'minLength': '6'
+        }
+    )
+    sureNewPwd = PasswordField(
+        label='重复新密码',
+        validators=[
+            DataRequired(),
+            Regexp('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$', message='为了账号的安全,密码必须是大小写字母和数字的组合,不能使用特殊字符,长度在6-15之间!'),
+            EqualTo('newPwd', '两次密码输入不一致！')
+        ],
+        render_kw={
+            'class': 'form-control',
+            'placeholder': '请重复新密码',
+            'maxLength': '15',
+            'minLength': '6'
+        }
+    )
+    submit = SubmitField(
+        '确认修改',
+        render_kw={
+            'class': 'btn btn-log btn-primary btn-block',
+        }
+    )
+
+    def validate_pwd(self, field):
+        from flask import session
+        pwd = field.data
+        user = User.query.filter_by(name=session['user']).first()
+        if not user.check_pwd(pwd):
+            raise ValidationError('原密码输入有误！')

@@ -1,7 +1,7 @@
 from . import home
 from flask import render_template, flash, redirect, url_for, session, request
-from app.home.forms import RegisterForm, LoginForm
-from app.models import User
+from app.home.forms import RegisterForm, LoginForm, AlterPwd
+from app.models import User, UserLoginlog
 import requests
 from werkzeug.security import generate_password_hash
 from app import db
@@ -63,6 +63,13 @@ def login():
             flash('密码有误，请重新输入!', 'error')
             redirect(url_for('home.login'))
         session['user'] = user.name
+        session['id'] = user.id
+        userLoginLog = UserLoginlog(
+            user_id=user.id,
+            ip=request.remote_addr
+        )
+        db.session.add(userLoginLog)
+        db.session.commit()
         return redirect(url_for('home.index'))
     return render_template('home/login.html', form=loginForm)
 
@@ -109,10 +116,19 @@ def user():
     return render_template('home/user.html')
 
 
-@home.route('/pwd/')
+@home.route('/alterpwd/', methods=['get', 'post'])
 @userLoginRule
-def pwd():
-    return render_template('home/pwd.html')
+def alterpwd():
+    alterpwdForm = AlterPwd()
+    alterPwdDate = alterpwdForm.data
+    if alterpwdForm.validate_on_submit():
+        user = User.query.filter_by(name=session['user']).first()
+        user.pwd = generate_password_hash(alterPwdDate['newPwd'])
+        db.session.add(user)
+        db.session.commit()
+        flash('修改密码成功，您需要重新登录！', 'okey')
+        return redirect(url_for('home.logout'))
+    return render_template('home/alterpwd.html', form=alterpwdForm)
 
 
 @home.route('/comment/')
@@ -121,7 +137,12 @@ def comment():
     return render_template('home/comment.html')
 
 
-@home.route('/loginlog/')
+@home.route('/loginlog/<int:page>', methods=['get'])
 @userLoginRule
-def loginlog():
-    return render_template('home/loginlog.html')
+def loginlog(page=None):
+    if page is None:
+        page = 1
+    page_data = UserLoginlog.query.order_by(
+        UserLoginlog.addtime.desc()
+    ).paginate(page=page, per_page=10)
+    return render_template('home/loginlog.html', page_data=page_data)
