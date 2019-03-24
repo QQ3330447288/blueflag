@@ -47,7 +47,8 @@ def sendCode():
     formData = registerForm.data
     phone = formData['phone']
     req_url = "http://api.feige.ee/SmsService/Send"
-    data = {"Account": "18937693205", "Pwd": "1593820c5e67784b988976748", "Content": "验证码:" + randomCode,
+    data = {"Account": "18937693205", "Pwd": "1593820c5e67784b988976748",
+            "Content": "验证码:" + randomCode + "。此验证码仅用于校验身份以注册和登录到蓝色旗帜网，10分钟内有效。",
             "Mobile": phone, "SignId": 106861}
     response = requests.post(req_url, data=data)
     return redirect(url_for('home.register'))
