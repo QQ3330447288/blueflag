@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,24 +56,6 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li style="margin-top: 8px">
-                    <div class="input-group" style="width: 250px">
-                        <script type="text/javascript">(function () {
-                            document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));
-                            var bdcs = document.createElement('script');
-                            bdcs.type = 'text/javascript';
-                            bdcs.async = true;
-                            bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=6784843387135246760' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date() / 3600000);
-                            var s = document.getElementsByTagName('script')[0];
-                            s.parentNode.insertBefore(bdcs, s);
-                        })();</script>
-                        <!--<input type="text" class="form-control" placeholder="百度对接中……">-->
-                        <!--&lt;!&ndash;Search for...&ndash;&gt;-->
-                        <!--<span class="input-group-btn">-->
-                        <!--<a href="" class="btn btn-primary" type="button">站内搜索</a>-->
-                        <!--</span>-->
-                    </div><!-- /input-group -->
-                </li>
                 {%if 'user' in session%}
                 <li>
                     <a><span class="glyphicon glyphicon-user"></span>&nbsp;{{session["user"]}}</a>
@@ -110,11 +92,14 @@
 <script src="https://cdn.bootcss.com/holder/2.9.4/holder.min.js"></script>
 <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
 <script src="{{url_for('static',filename='js/bootstrap.thanlon.js')}}"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1753632933" type="text/javascript"
+        charset="utf-8"></script>
 <script>
     document.oncontextmenu = function (e) {
         return false;
     }
 </script>
-{% block js %}{% endblock %}
+{% block js %}
+{% endblock %}
 </body>
 </html>

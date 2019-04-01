@@ -1,7 +1,8 @@
+# coding:utf8
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, Regexp, EqualTo
-from app.models import User
+
 
 
 class RegisterForm(FlaskForm):
@@ -119,7 +120,7 @@ class LoginForm(FlaskForm):
         }
     )
     submit = SubmitField(
-        '注册',
+        '登录',
         render_kw={
             'class': 'btn btn-log btn-primary btn-block'
         }
