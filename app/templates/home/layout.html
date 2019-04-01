@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
-    <meta name="description" content=""><!-- add description message which will be showing on the search-->
-    <meta name="keywords" content="蓝色旗帜">
+    <meta name="description" content="本站定位为互联网信息分享平台，平台项目源码大多免费提供下载。">
+    <!-- add description message which will be showing on the search-->
+    <meta name="keywords" content="蓝色旗帜,蓝色旗帜网,牛新龙,Thanlon,thanlon">
     <meta name="baidu-site-verification" content="Dw5G7xfcTl"/>
     <link rel="icon" href="{{url_for('static',filename='images/flag.png')}}" type="image/x-icon">
     <link rel="shortcut icon" href="{{url_for('static',filename='images/flag.png')}}" type="image/x-icon">
@@ -15,6 +16,19 @@
     <link href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static',filename='css/thanlon.public.css')}}">
     {% block css %}{% endblock %}
+    <script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            } else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top ">
@@ -37,17 +51,27 @@
                 <li><a href="{{url_for('home.sourceCode')}}" id="item2"><span class="glyphicon glyphicon-save"></span>
                     源码项目</a></li>
                 <!--<li><a href="{{url_for('home.cooperation')}}" id="item3">项目合作</a></li>-->
-                <li><a href="{{url_for('home.aboutUs')}}" id="item5"><span class="glyphicon glyphicon-bullhorn"></span> 关于本站</a>
+                <li><a href="{{url_for('home.aboutUs')}}" id="item5"><span class="glyphicon glyphicon-bullhorn"></span>
+                    关于本站</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li style="margin-top: 8px">
                     <div class="input-group" style="width: 250px">
-                        <input type="text" class="form-control" placeholder="百度对接中……">
-                        <!--Search for...-->
-                        <span class="input-group-btn">
-<a href="" class="btn btn-primary" type="button">站内搜索</a>
-</span>
+                        <script type="text/javascript">(function () {
+                            document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));
+                            var bdcs = document.createElement('script');
+                            bdcs.type = 'text/javascript';
+                            bdcs.async = true;
+                            bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=6784843387135246760' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date() / 3600000);
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(bdcs, s);
+                        })();</script>
+                        <!--<input type="text" class="form-control" placeholder="百度对接中……">-->
+                        <!--&lt;!&ndash;Search for...&ndash;&gt;-->
+                        <!--<span class="input-group-btn">-->
+                        <!--<a href="" class="btn btn-primary" type="button">站内搜索</a>-->
+                        <!--</span>-->
                     </div><!-- /input-group -->
                 </li>
                 {%if 'user' in session%}
