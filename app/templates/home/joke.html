@@ -1,0 +1,79 @@
+{% extends 'home/layout.html' %}
+{% block css %}
+<style>
+    .row > .col-md-12 > .panel {
+        margin: 1px;
+    }
+
+    .row > .col-md-12 > .panel > .panel-body {
+        padding: 0;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container" style="margin-top: 75px">
+    <div class="row">
+        <div class="col-md-12" style="padding:0;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    内涵笑话/
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% for v in data['result']['data']%}
+                        <li class="list-group-item">
+                            <div class="text-success">{{v.content}}</div>
+                            <br>
+                            <small class="text-warning">更新时间：{{v.updatetime}}</small>
+                        </li>
+                        {% endfor%}
+                    </ul>
+                    <div class="bdsharebuttonbox" data-tag="share_1">
+                        <a class="bds_sqq" data-cmd="sqq"></a>
+                        <a class="bds_weixin" data-cmd="weixin"></a>
+                        <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+                        <a class="bds_tsina" data-cmd="tsina"></a>
+                        <a class="bds_baidu" data-cmd="baidu"></a>
+                        <a class="bds_more" data-cmd="more">更多</a>
+                        <a class="bds_count" data-cmd="count"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $("#m-1").addClass("active");
+        $("#item9").addClass("active_diy");
+    });
+</script>
+<script>
+    window._bd_share_config = {
+        common: {
+            bdText: '自定义分享内容',
+            bdDesc: '自定义分享摘要',
+            bdUrl: 'https://www.thanlon.cn',
+            bdPic: '自定义分享图片'
+        },
+        share: [{
+            "bdSize": 24
+        }],
+        image: [{
+            viewType: 'list',
+            viewPos: 'top',
+            viewColor: 'black',
+            viewSize: '24',
+            viewList: ['sqq', 'weixin', 'qzone', 'tsina', 'douban']
+        }],
+        selectShare: [{
+            "bdselectMiniList": ['sqq', 'weixin', 'qzone', 'tsina', 'douban']
+        }]
+    }
+    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+{% endblock %}

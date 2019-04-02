@@ -107,6 +107,7 @@ def aboutUs():
 
 
 @home.route("/<int:page>", methods=['get'])
+@userLoginRule
 def index(page=None):
     artCate = Artcate.query.all()
     if page is None:
@@ -153,3 +154,14 @@ def loginlog(page=None):
         UserLoginlog.addtime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('home/loginlog.html', page_data=page_data)
+
+
+@home.route('/joke/', methods=['get'])
+@userLoginRule
+def joke():
+    appkey = 'b863f6877d7e37cdc0f2e16177ab9c97'
+    param = 'page=&pagesize=&key='
+    url = 'http://v.juhe.cn/joke/content/text.php?' + param + appkey
+    r = requests.get(url)
+    data = r.json()
+    return render_template('home/joke.html', data=data)
