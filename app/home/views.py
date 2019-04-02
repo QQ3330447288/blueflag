@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash
 from app import db
 import random
 from functools import wraps
+from app.models import Artcate, Article
 
 randomCode = str(random.randint(1000, 9999))
 
@@ -27,7 +28,6 @@ def register():
     if registerForm.validate_on_submit():
         formData = registerForm.data
         if randomCode == formData['code']:
-            # print("okey!")
             user = User(
                 name=formData['name'],
                 pwd=generate_password_hash(formData['pwd']),
@@ -71,7 +71,7 @@ def login():
         )
         db.session.add(userLoginLog)
         db.session.commit()
-        return redirect(url_for('home.index'))
+        return redirect(url_for('home.index', page=1))
     return render_template('home/login.html', form=loginForm)
 
 
@@ -106,9 +106,15 @@ def aboutUs():
     return render_template('home/userAgreement.html')
 
 
-@home.route("/")
-def index():
-    return render_template('home/index.html')
+@home.route("/<int:page>", methods=['get'])
+def index(page=None):
+    artCate = Artcate.query.all()
+    if page is None:
+        page = 1
+    pageData = Article.query.order_by(
+        Article.addTime.desc()
+    ).paginate(page=page, per_page=10)
+    return render_template('home/index.html', pageData=pageData, artcate=artCate)
 
 
 @home.route('/user/')

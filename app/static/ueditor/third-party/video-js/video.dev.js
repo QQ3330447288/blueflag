@@ -5112,8 +5112,8 @@ vjs.Html5 = vjs.MediaTechController.extend({
     // In Chrome (15), if you have autoplay + a poster + no controls, the video gets hidden (but audio plays)
     // This fixes both issues. Need to wait for API, so it updates displays correctly
     player.ready(function(){
-      if (this.tag && this.options_['autoplay'] && this.paused()) {
-        delete this.tag['poster']; // Chrome Fix. Fixed in Chrome v16.
+      if (this.tagList && this.options_['autoplay'] && this.paused()) {
+        delete this.tagList['poster']; // Chrome Fix. Fixed in Chrome v16.
         this.play();
       }
     });

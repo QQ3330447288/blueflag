@@ -262,14 +262,14 @@
                             if(p == 'tag')continue;
                             html.push(p + '="' + obj[p] + '"')
                         }
-                        doc.write('<' + obj.tag + ' ' + html.join(' ') + ' ></'+obj.tag+'>');
+                        doc.write('<' + obj.tagList + ' ' + html.join(' ') + ' ></'+obj.tagList+'>');
                         return;
                     }
                     if (obj.id && doc.getElementById(obj.id)) {
                         return;
                     }
-                    var element = doc.createElement(obj.tag);
-                    delete obj.tag;
+                    var element = doc.createElement(obj.tagList);
+                    delete obj.tagList;
                     for (var p in obj) {
                         element.setAttribute(p, obj[p]);
                     }

@@ -901,14 +901,14 @@ var utils = UE.utils = {
                     if (p == 'tag')continue;
                     html.push(p + '="' + obj[p] + '"')
                 }
-                doc.write('<' + obj.tag + ' ' + html.join(' ') + ' ></' + obj.tag + '>');
+                doc.write('<' + obj.tagList + ' ' + html.join(' ') + ' ></' + obj.tagList + '>');
                 return;
             }
             if (obj.id && doc.getElementById(obj.id)) {
                 return;
             }
-            var element = doc.createElement(obj.tag);
-            delete obj.tag;
+            var element = doc.createElement(obj.tagList);
+            delete obj.tagList;
             for (var p in obj) {
                 element.setAttribute(p, obj[p]);
             }
@@ -22997,7 +22997,7 @@ UE.plugins['customstyle'] = function() {
     me.commands['customstyle'] = {
         execCommand : function(cmdName, obj) {
             var me = this,
-                    tagName = obj.tag,
+                    tagName = obj.tagList,
                     node = domUtils.findParent(me.selection.getStart(), function(node) {
                         return node.getAttribute('label');
                     }, true),
@@ -23006,7 +23006,7 @@ UE.plugins['customstyle'] = function() {
                if(obj[p]!==undefined)
                     tmpObj[p] = obj[p];
             }
-            delete tmpObj.tag;
+            delete tmpObj.tagList;
             if (node && node.getAttribute('label') == obj.label) {
                 range = this.selection.getRange();
                 bk = range.createBookmark();
@@ -28193,7 +28193,7 @@ UE.ui = baidu.editor.ui = {};
                 ck.label = t.label ? t.label : langCs[t.name];
                 ck.style = t.style;
                 ck.className = t.className;
-                ck.tag = t.tag;
+                ck.tag = t.tagList;
                 items.push({
                     label:ck.label,
                     value:ck,
