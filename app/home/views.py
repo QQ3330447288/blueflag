@@ -106,8 +106,12 @@ def aboutUs():
     return render_template('home/userAgreement.html')
 
 
+@home.route('/')
+def indexlTmp():
+    return redirect(url_for('home.index', page=1))
+
+
 @home.route("/<int:page>", methods=['get'])
-@userLoginRule
 def index(page=None):
     artCate = Artcate.query.all()
     if page is None:
