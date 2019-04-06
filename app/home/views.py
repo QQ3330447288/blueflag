@@ -140,8 +140,8 @@ def searchArt(page=None):
 
 
 # 文章详细列表
-@home.route("/art/desc/<int:id>", methods=['get', 'post'])
-def artDesc(id=None):
+@home.route("/art/desc/<int:id>/<int:page>", methods=['get', 'post'])
+def artDesc(id=None, page=None):
     # art = Article.query.get_or_404(int(id))
     art = Article.query.join(
         Artcate
@@ -161,12 +161,22 @@ def artDesc(id=None):
         )
         db.session.add(comment)
         db.session.commit()
-        art.commentNum = art.commentNum + 1
         flash('评论成功！', 'okey')
-        return redirect(url_for('home.artDesc', id=art.id))
+        art.commentNum = art.commentNum + 1
     db.session.add(art)
     db.session.commit()
-    return render_template('home/artdesc.html', art=art, form=commentForm)
+    if page == None:
+        page = 1
+    pageData = Comment.query.join(
+        User
+    ).join(
+        Article
+    ).filter(
+        User.id == Comment.user_id
+    ).order_by(
+        Comment.addtime.desc()
+    ).paginate(page=page, per_page=10)
+    return render_template('home/artdesc.html', art=art, form=commentForm, pageData=pageData)
 
 
 @home.route('/user/')

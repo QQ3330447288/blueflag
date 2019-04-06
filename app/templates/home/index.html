@@ -30,7 +30,7 @@
                         <img src="{{url_for('static',filename='images/2019.png')}}" alt="First slide">
                     </div>
                     <div class="item" style="text-align: center">
-                        <img  src="{{url_for('static',filename='images/2019.png')}}" alt="Second slide">
+                        <img src="{{url_for('static',filename='images/2019.png')}}" alt="Second slide">
                     </div>
                     <div class="item">
                         <img src="{{url_for('static',filename='images/2019.png')}}" alt="Third slide">
@@ -74,11 +74,11 @@
                                 <span
                                         class="badge"></span>
                             </sapn>
-                            <h5>发布者:{{v.publisher}} 阅读:{{v.viewNum}}评论:({{v.viewNum}})&nbsp;发布时间:{{v.addTime}}</h5>
+                            <h5>发布者:{{v.publisher}} 阅读:{{v.viewNum}}评论:({{v.commentNum}})&nbsp;发布时间:{{v.addTime}}</h5>
                         </div>
                     </div>
                     {% endfor %}
-                     分享到：
+                    分享到：
                     <div class="bdsharebuttonbox" data-tag="share_1">
                         <a class="bds_sqq" data-cmd="sqq"></a>
                         <a class="bds_weixin" data-cmd="weixin"></a>

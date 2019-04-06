@@ -105,7 +105,18 @@
             </ul>
 
             <div class="col-md-12 text-center">
-
+                {% for v in pageData.items %}
+                <div>
+                    {{v.user.name}}
+                    关于“{{v.article.title}}”
+                    评论于：
+                    {{v.addtime}}
+                    内容：{{v.content}}
+                </div>
+                {% endfor %}
+                <div class="panel-body">
+<!--                    {{pg.page(pageData,'home.index')}}-->
+                </div>
             </div>
         </div>
     </div>

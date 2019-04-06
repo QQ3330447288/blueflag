@@ -27,7 +27,7 @@
                 {{v.briefInfo}}
                 {{v.publisher}}
                 {{v.addtime}}
-                <td><a href="{{url_for('home.artDesc',id=v.id)}}">查看</a></td>
+                <td><a href="{{url_for('home.artDesc',id=v.id,page=1)}}">查看</a></td>
             </div>
         </div>
         {% endfor %}
