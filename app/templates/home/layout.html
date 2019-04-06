@@ -44,7 +44,8 @@
                     </button>
                     <a href="{{url_for('home.index',page = 1)}}" class="navbar-brand"
                        style="width:250px;color: #333;height: 60px;padding-top: 15px">
-                        <img src="">&nbsp;蓝色旗帜
+                        <!--                        <img src="">&nbsp;蓝色旗帜-->
+                        <span class="glyphicon glyphicon-flag" style="color:#3379b7 "></span>蓝色旗帜
                     </a>
                 </div>
                 <!--小屏幕导航按钮和logo-->
@@ -52,9 +53,9 @@
                 <div class="navbar-collapse collapse" style="padding-top: 7px">
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group input-group">
-                            <input type="text" class="form-control" placeholder="搜搜优秀的技术博文!" id="key_movie">
+                            <input type="text" class="form-control" placeholder="搜搜优秀的技术博文!" id="searchArt">
                             <span class="input-group-btn">
-                        <a class="btn btn-default" id="do_search"><span
+                        <a class="btn btn-default" id="search"><span
                                 class="glyphicon glyphicon-search"></span>&nbsp;搜索</a>
                     </span>
                         </div>
@@ -62,7 +63,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a class="curlink" href="{{url_for('home.sourceCode')}}" style="font-weight: bold;"><span
-                                    class="glyphicon  glyphicon-folder-open" style="color: "></span>&nbsp;源码共享</a>
+                                    class="glyphicon  glyphicon-folder-open"></span>&nbsp;源码共享</a>
                         </li>
                         <li>
                             <a class="curlink" href="{{url_for('home.joke')}}" style="font-weight: bold"><span
@@ -117,7 +118,14 @@
 <script>
     document.oncontextmenu = function (e) {
         return false;
-    }
+    };
+    $(document).ready(function () {
+        $("#search").click(function () {
+            // alert(1)
+            var key = $("#searchArt").val()
+            window.location.href = "{{url_for('home.searchArt',page=1)}}?keyWords=" + key;
+        })
+    })
 </script>
 {% block js %}
 {% endblock %}

@@ -5,8 +5,8 @@
 <section class="content-header">
     <h1>蓝色旗帜后台管理系统</h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 博文管理</a></li>
-        <li class="active">博文列表</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> 会员管理</a></li>
+        <li class="active">用户列表</li>
     </ol>
 </section>
 <section class="content" id="showcontent">
@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">博文列表</h3>
+                    <h3 class="box-title">用户列表</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control pull-right"
@@ -39,23 +39,23 @@
                         <tbody>
                         <tr>
                             <th>编号</th>
-                            <th>标题</th>
-                            <th>分类</th>
-                            <th>评论量</th>
-                            <th>阅读量</th>
-                            <th>发布者</th>
-                            <th>添加时间</th>
+                            <th>用户名</th>
+                            <th>email</th>
+                            <th>手机号</th>
+                            <th>个人简介</th>
+                            <th>头像</th>
+                            <th>注册时间</th>
                             <th>操作</th>
                         </tr>
                         {% for v in pageData.items %}
                         <tr>
                             <td>{{v.id}}</td>
-                            <td>{{v.title}}</td>
-                            <td></td>
-                            <td>{{v.commentNum}}</td>
-                            <td>{{v.viewNum}}</td>
-                            <td>{{v.publisher}}</td>
-                            <td>{{v.addTime}}</td>
+                            <td>{{v.name}}</td>
+                            <td>{{v.email}}</td>
+                            <td>{{v.phone}}</td>
+                            <td>{{v.info}}</td>
+                            <td>{{v.face}}</td>
+                            <td>{{v.addtime}}</td>
                             <td>
                                 <a href="" class="label label-success">编辑</a>
                                 <a href="{{url_for('admin.delArt',id = v.id)}}" class="label label-danger">删除</a>
@@ -66,7 +66,7 @@
                     </table>
                 </div>
                 <div class="box-footer clearfix ">
-                    {{pg.page(pageData,'admin.ArtList')}}
+                    {{pg.page(pageData,'admin.userList')}}
                 </div>
             </div>
         </div>
@@ -76,8 +76,8 @@
 {% block js %}
 <script>
     $(document).ready(function () {
-        $("#g-3").addClass("active");
-        $("#g-3-2").addClass("active");
+        $("#g-5").addClass("active");
+        $("#g-5-1").addClass("active");
     });
 </script>
 {% endblock %}

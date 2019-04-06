@@ -8,7 +8,7 @@
         </a>
         <ul class="treeview-menu">
             <li id="g-1-1">
-                <a href="">
+                <a href="{{url_for('admin.index')}}">
                     <i class="fa fa-circle-o"></i> 控制面板
                 </a>
             </li>
@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li id="g-3-2">
-                <a href="{{url_for('admin.ArtList')}}">
+                <a href="{{url_for('admin.ArtList',page=1)}}">
                     <i class="fa fa-circle-o"></i> 博文列表
                 </a>
             </li>
@@ -79,7 +79,7 @@
         </a>
         <ul class="treeview-menu">
             <li id="g-5-1">
-                <a href="">
+                <a href="{{url_for('admin.userList',page=1)}}">
                     <i class="fa fa-circle-o"></i> 会员列表
                 </a>
             </li>
@@ -146,12 +146,12 @@
         </a>
         <ul class="treeview-menu">
             <li id="g-9-1">
-                <a href="">
+                <a href="{{url_for('admin.addAuth')}}">
                     <i class="fa fa-circle-o"></i> 添加权限
                 </a>
             </li>
             <li id="g-9-2">
-                <a href="">
+                <a href="{{url_for('admin.authList',page=1)}}">
                     <i class="fa fa-circle-o"></i> 权限列表
                 </a>
             </li>
@@ -165,12 +165,12 @@
         </a>
         <ul class="treeview-menu">
             <li id="g-10-1">
-                <a href="">
+                <a href="{{url_for('admin.addRole')}}">
                     <i class="fa fa-circle-o"></i> 添加角色
                 </a>
             </li>
             <li id="g-10-2">
-                <a href="">
+                <a href="{{url_for('admin.roleList',page=1)}}">
                     <i class="fa fa-circle-o"></i> 角色列表
                 </a>
             </li>
@@ -184,12 +184,12 @@
         </a>
         <ul class="treeview-menu">
             <li id="g-11-1">
-                <a href="">
+                <a href="{{url_for('admin.addAdmin')}}">
                     <i class="fa fa-circle-o"></i> 添加管理员
                 </a>
             </li>
             <li id="g-11-2">
-                <a href="">
+                <a href="{{url_for('admin.adminList',page=1)}}">
                     <i class="fa fa-circle-o"></i> 管理员列表
                 </a>
             </li>

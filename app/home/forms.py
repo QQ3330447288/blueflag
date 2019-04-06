@@ -1,6 +1,6 @@
 # coding:utf8
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError, Regexp, EqualTo
 from app.models import User
 
@@ -187,3 +187,22 @@ class AlterPwd(FlaskForm):
         user = User.query.filter_by(name=session['user']).first()
         if not user.check_pwd(pwd):
             raise ValidationError('原密码输入有误！')
+
+
+class CommentForm(FlaskForm):
+    content = TextAreaField(
+        label="内容",
+        validators=[
+            DataRequired("请输入评论内容！")
+        ],
+        render_kw={
+            "id": "input_content"
+        }
+    )
+    submit = SubmitField(
+        '提交评论',
+        render_kw={
+            "class": "btn btn-success",
+            "id": "btn-sub"
+        }
+    )

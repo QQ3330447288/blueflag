@@ -1,7 +1,8 @@
+# coding:utf8
 from . import home
 from flask import render_template, flash, redirect, url_for, session, request
-from app.home.forms import RegisterForm, LoginForm, AlterPwd
-from app.models import User, UserLoginlog
+from app.home.forms import RegisterForm, LoginForm, AlterPwd, CommentForm
+from app.models import User, UserLoginlog, Comment
 import requests
 from werkzeug.security import generate_password_hash
 from app import db
@@ -120,6 +121,52 @@ def index(page=None):
         Article.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('home/index.html', pageData=pageData, artcate=artCate)
+
+
+@home.route("/home/search/<int:page>", methods=['get'])
+def searchArt(page=None):
+    if page == None:
+        page = 1
+    key = request.args.get('keyWords', '')
+    pageData = Article.query.filter(
+        Article.title.ilike('%' + key + '%')
+    ).order_by(
+        Article.addTime.desc()
+    ).paginate(page=page, per_page=10)
+    artCount = Article.query.filter(
+        Article.title.ilike('%' + key + '%')
+    ).count()
+    return render_template('home/search.html', key=key, pageData=pageData, count=artCount)
+
+
+# 文章详细列表
+@home.route("/art/desc/<int:id>", methods=['get', 'post'])
+def artDesc(id=None):
+    # art = Article.query.get_or_404(int(id))
+    art = Article.query.join(
+        Artcate
+    ).filter(
+        Artcate.id == Article.artCateId,
+        Article.id == int(id)
+    ).first_or_404()
+    art.viewNum = art.viewNum + 1
+    # 提交评论
+    commentForm = CommentForm()
+    if "user" in session and commentForm.validate_on_submit():
+        data = commentForm.data
+        comment = Comment(
+            article_id=art.id,
+            content=data['content'],
+            user_id=session['id']
+        )
+        db.session.add(comment)
+        db.session.commit()
+        art.commentNum = art.commentNum + 1
+        flash('评论成功！', 'okey')
+        return redirect(url_for('home.artDesc', id=art.id))
+    db.session.add(art)
+    db.session.commit()
+    return render_template('home/artdesc.html', art=art, form=commentForm)
 
 
 @home.route('/user/')

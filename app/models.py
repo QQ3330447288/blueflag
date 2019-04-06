@@ -16,6 +16,7 @@ class User(db.Model):
     face = db.Column(db.String(255), unique=True)  # face
     addtime = db.Column(db.DateTime, index=True, default=datetime.now)
     uuid = db.Column(db.String(255), unique=True)  # uuid
+    comment = db.relationship("Comment", backref='user')
 
     def __repr__(self):
         return "<User %r>" % self.name
@@ -55,6 +56,8 @@ class Artcate(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 编号
     name = db.Column(db.String(100), unique=True)  # 标题
     addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
+    article = db.relationship("Article", backref='artcate')  # 博文外键关系关联
+    # Article表示Article表,artcate是自定义字段
 
 
 # # 博文表
@@ -65,12 +68,43 @@ class Article(db.Model):
     title = db.Column(db.String(100), unique=True)  # 标题
     briefInfo = db.Column(db.Text)  # 简介
     cover = db.Column(db.String(255))  # 封面
-    artCateId = db.Column(db.SmallInteger)
-    commentNum = db.Column(db.BigInteger)  # 评论量
-    viewNum = db.Column(db.BigInteger)  # 查看量
+    artCateId = db.Column(db.SmallInteger, db.ForeignKey('artcate.id'))
+    commentNum = db.Column(db.BigInteger, default=0)  # 评论量
+    viewNum = db.Column(db.BigInteger, default=0)  # 查看量
     publisher = db.Column(db.String(50))
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
+    comment = db.relationship("Comment", backref='article')
 
+
+# 评论表
+class Comment(db.Model):
+    __tablename__ = "comment"
+    __table_args__ = {"useexisting": True}
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text)
+    article_id = db.Column(db.Integer, db.ForeignKey('article.id'))  # 所属博文
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 所属用户
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 评论时间
+
+
+# 权限表
+class Auth(db.Model):
+    __tablename__ = "auth"
+    __table_args__ = {"useexisting": True}
+    id = db.Column(db.Integer, primary_key=True)  # 编号
+    name = db.Column(db.String(30), unique=True)  # 权限名称
+    url = db.Column(db.String(255), unique=True)  # 权限地址
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)
+
+
+# 角色表
+class Role(db.Model):
+    __tablename__ = "role"
+    __table_args__ = {"useexisting": True}
+    id = db.Column(db.Integer, primary_key=True)  # 编号
+    name = db.Column(db.String(100), unique=True)  # 角色名称
+    auth = db.Column(db.String(600))  # 权限
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 角色添加时间
 
 # if __name__ == '__main__':
 #     db.create_all()

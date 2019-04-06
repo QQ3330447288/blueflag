@@ -29,40 +29,29 @@
                         </div>
                         {% endfor %}
                         <div class="form-group">
-                            <label for="input_name">{{form.title.label}}</label>
-                            {{form.title}}
-                            {% for err in form.title.errors %}
-                            <div class="col-md-12">
-                                <font style="color:red">{{ err }}</font>
-                            </div>
+                            <label for="input_name">{{form.account.label}}</label>
+                            {{form.account}}
+                            {% for err in form.account.errors %}
+                            <font style="color:red;font-weight:bold">{{err}}</font>
                             {% endfor %}
                         </div>
                         <div class="form-group">
-                            <label for="input_name">{{form.briefInfo.label}}</label>
-                            {{form.briefInfo}}
-                            {% for err in form.briefInfo.errors %}
-                            <div class="col-md-12">
-                                <font style="color:red">{{ err }}</font>
-                            </div>
+                            <label for="input_pwd">{{form.pwd.label}}</label>
+                            {{form.pwd}}
+                            {% for err in form.pwd.errors %}
+                            <font style="color:red;font-weight:bold">{{err}}</font>
                             {% endfor %}
                         </div>
                         <div class="form-group">
-                            <label for="input_name">{{form.cover.label}}</label>
-                            {{form.cover}}
-                            {% for err in form.cover.errors %}
-                            <div class="col-md-12">
-                                <font style="color:red">{{ err }}</font>
-                            </div>
+                            <label for="input_re_pwd">{{form.repwd.label}}</label>
+                            {{form.repwd}}
+                            {% for err in form.repwd.errors %}
+                            <font style="color:red;font-weight:bold">{{err}}</font>
                             {% endfor %}
                         </div>
                         <div class="form-group">
-                            <label for="input_tag_id">{{form.artCateId.label}}</label>
-                            {{form.artCateId}}
-                            {% for err in form.artCateId.errors %}
-                            <div class="col-md-12">
-                                <font style="color:red">{{ err }}</font>
-                            </div>
-                            {% endfor %}
+                            <label for="input_role_id">{{form.role_id.label}}</label>
+                            {{form.role_id}}
                         </div>
                     </div>
                     <div class="box-footer">
@@ -78,8 +67,8 @@
 {% block js %}
 <script>
     $(document).ready(function () {
-        $("#g-3").addClass("active");
-        $("#g-3-1").addClass("active");
+        $("#g-11").addClass("active");
+        $("#g-11-1").addClass("active");
     });
 </script>
 {% endblock %}

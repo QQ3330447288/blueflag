@@ -39,26 +39,26 @@
                         <tbody>
                         <tr>
                             <th>编号</th>
-                            <th>标题</th>
-                            <th>分类</th>
-                            <th>评论量</th>
-                            <th>阅读量</th>
-                            <th>发布者</th>
+                            <th>账号</th>
+                            <th>管理员类型</th>
+                            <th>管理员角色</th>
                             <th>添加时间</th>
                             <th>操作</th>
                         </tr>
                         {% for v in pageData.items %}
                         <tr>
                             <td>{{v.id}}</td>
-                            <td>{{v.title}}</td>
-                            <td></td>
-                            <td>{{v.commentNum}}</td>
-                            <td>{{v.viewNum}}</td>
-                            <td>{{v.publisher}}</td>
-                            <td>{{v.addTime}}</td>
+                            <td>{{v.account}}</td>
+                            {% if v.is_super ==0 %}
+                            <td>超级管理员</td>
+                            {% else %}
+                            <td>普通管理员</td>
+                            {% endif %}
+                            <td>{{v.role.name}}</td>
+                            <td>{{v.addtime}}</td>
                             <td>
                                 <a href="" class="label label-success">编辑</a>
-                                <a href="{{url_for('admin.delArt',id = v.id)}}" class="label label-danger">删除</a>
+                                <a href="{{url_for('admin.delAdmin',id = v.id)}}" class="label label-danger">删除</a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -66,7 +66,7 @@
                     </table>
                 </div>
                 <div class="box-footer clearfix ">
-                    {{pg.page(pageData,'admin.ArtList')}}
+                    {{pg.page(pageData,'admin.adminList')}}
                 </div>
             </div>
         </div>
@@ -76,8 +76,8 @@
 {% block js %}
 <script>
     $(document).ready(function () {
-        $("#g-3").addClass("active");
-        $("#g-3-2").addClass("active");
+        $("#g-11").addClass("active");
+        $("#g-11-2").addClass("active");
     });
 </script>
 {% endblock %}

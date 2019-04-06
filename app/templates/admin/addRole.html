@@ -4,15 +4,15 @@
 <section class="content-header">
     <h1>蓝色旗帜后台管理系统</h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 博文管理</a></li>
-        <li class="active">添加博文</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> 权限管理</a></li>
+        <li class="active">添加权限</li>
     </ol>
 </section>
 <section class="content" id="showcontent">
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <form role="form" method="post" enctype="multipart/form-data">
+                <form role="form" method="post">
                     <div class="box-body">
                         {% for msg in get_flashed_messages(category_filter=["okey"]) %}
                         <div class="alert alert-success alert-dismissible">
@@ -29,36 +29,18 @@
                         </div>
                         {% endfor %}
                         <div class="form-group">
-                            <label for="input_name">{{form.title.label}}</label>
-                            {{form.title}}
-                            {% for err in form.title.errors %}
+                            <label for="input_name">{{form.name.label}}</label>
+                            {{form.name}}
+                            {% for err in form.name.errors %}
                             <div class="col-md-12">
                                 <font style="color:red">{{ err }}</font>
                             </div>
                             {% endfor %}
                         </div>
                         <div class="form-group">
-                            <label for="input_name">{{form.briefInfo.label}}</label>
-                            {{form.briefInfo}}
-                            {% for err in form.briefInfo.errors %}
-                            <div class="col-md-12">
-                                <font style="color:red">{{ err }}</font>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <div class="form-group">
-                            <label for="input_name">{{form.cover.label}}</label>
-                            {{form.cover}}
-                            {% for err in form.cover.errors %}
-                            <div class="col-md-12">
-                                <font style="color:red">{{ err }}</font>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <div class="form-group">
-                            <label for="input_tag_id">{{form.artCateId.label}}</label>
-                            {{form.artCateId}}
-                            {% for err in form.artCateId.errors %}
+                            <label for="input_name">{{form.auth.label}}</label>
+                            {{form.auth}}
+                            {% for err in form.auth.errors %}
                             <div class="col-md-12">
                                 <font style="color:red">{{ err }}</font>
                             </div>
@@ -78,8 +60,8 @@
 {% block js %}
 <script>
     $(document).ready(function () {
-        $("#g-3").addClass("active");
-        $("#g-3-1").addClass("active");
+        $("#g-10").addClass("active");
+        $("#g-10-1").addClass("active");
     });
 </script>
 {% endblock %}

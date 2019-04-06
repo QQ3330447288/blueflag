@@ -1,5 +1,5 @@
 {% extends 'admin/layout.html' %}
-{% import "ui/artCatePage.html" as pg%}
+{% import "ui/adminPage.html" as pg%}
 {% block css %}{% endblock %}
 {% block content %}
 <section class="content-header">
@@ -50,7 +50,7 @@
                             <td>{{v.addtime}}</td>
                             <td>
                                 <a href="" class="label label-success">编辑</a>
-                                <a href="" class="label label-danger">删除</a>
+                                <a href="{{url_for('admin.delArtCate',id = v.id)}}" class="label label-danger">删除</a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -58,7 +58,7 @@
                     </table>
                 </div>
                 <div class="box-footer clearfix ">
-                    {{pg.page(pageData,'admin.artCateList')}}
+                    {{pg.page(pageData,'admin.ArtList')}}
                 </div>
             </div>
         </div>
