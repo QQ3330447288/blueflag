@@ -1,7 +1,7 @@
 {% extends 'home/layout.html' %}
 {% block css %}{% endblock %}
 {% block content %}
-<div class="container" style="margin-top: 60px">
+<div class="container" style="margin-top: 75px">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-primary">
@@ -45,7 +45,13 @@
 </div>
 <div class="container-fluid" style="background:#414141;color: #b2bcc5;margin-top: 20px;margin-bottom: 2px">
     <div class="row">
-        <div class="col-md-12  text-center" style="padding: 30px">
+        <div class="col-md-12  text-center" style="padding: 40px">
+            <a href="{{url_for('home.aboutUs')}}" style="color:#b2bcc5;">关于本站</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.disclaimer')}}" style="color:#b2bcc5;">免责申明</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.blueprint')}}" style="color:#b2bcc5;">本站蓝图</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;"></a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">联系我们</a>
+            <br>
             Copyright © 2018-2019&nbsp; Blue Flag. All Rights Reserved.&nbsp;蓝色旗帜 版权所有&nbsp;
             <br>
             <a target="_blank_" href="http://www.miit.gov.cn/" style="color:#b2bcc5;">鲁ICP备17023496号-3</a>
@@ -53,7 +59,7 @@
                 <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
                 <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
             </a>
-            <span>版本号:1.1.0.190324_alpha</span>
+            <span>版本号:1.1.0.190402_alpha</span>
             <span>
                 <script
                         type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
