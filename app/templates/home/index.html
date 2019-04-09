@@ -65,25 +65,30 @@
             <div class="panel panel-default">
                 <div class="panel-body panel-default">
                     {% for v in pageData.items%}
+
                     <div class="media well addboxshadow" style="background-color: white">
                         <div class="col-md-12">
-                            <h4 class="card-title"><a>{{v.title}}</a></h4>
-                            <p class="card-text">{{v.briefInfo}}</p>
-                            分类：
-                            <sapn style="margin-bottom: 3px">
-                                {% if v.artCateId ==1 %}
-                                Python
-                                {% elif v.artCateId ==2 %}
-                                PHP
-                                {% else %}
-                                Django
-                                {% endif%}
-                                <span
-                                        class="badge"></span>
-                            </sapn>
-                            <h5>发布者:{{v.publisher}} 阅读:{{v.viewNum}}评论:({{v.commentNum}})&nbsp;发布时间:{{v.addTime}}</h5>
+
+                                <h4 class="card-title"><a href="{{url_for('home.artDesc',id=v.id,page=1)}}">{{v.title}}</a></h4>
+                                <p class="card-text">{{v.briefInfo}}</p>
+                                分类：
+                                <sapn style="margin-bottom: 3px">
+                                    {% if v.cate_id ==1 %}
+                                    Python
+                                    {% elif v.cate_id ==3 %}
+                                    Linux
+                                    {% else %}
+                                    Django
+                                    {% endif%}
+                                    <span
+                                            class="badge"></span>
+                                </sapn>
+                                <h5>发布者:{{v.publisher}}
+                                    阅读:{{v.viewNum}}&nbsp;评论:{{v.commentNum}}&nbsp;发布时间:{{v.addTime}}</h5>
+
                         </div>
                     </div>
+
                     {% endfor %}
                     分享到：
                     <div class="bdsharebuttonbox" data-tag="share_1">
@@ -165,6 +170,11 @@
                                 class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于人脸识别的门禁系统
                         </a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="javascript:;" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于JavaWeb的学校资源管理系统
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="panel panel-default">
@@ -189,8 +199,8 @@
             <a href="{{url_for('home.aboutUs')}}" style="color:#b2bcc5;">关于本站</a>&nbsp;|&nbsp;<a
                 href="{{url_for('home.disclaimer')}}" style="color:#b2bcc5;">免责申明</a>&nbsp;|&nbsp;<a
                 href="{{url_for('home.blueprint')}}" style="color:#b2bcc5;">本站蓝图</a>&nbsp;|&nbsp;<a
-                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;"></a>&nbsp;|&nbsp;<a
-                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">联系我们</a>
+                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">留言&nbsp;</a>&nbsp;
+            <!--            <a href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">联系我们</a>-->
             <br>
             Copyright © 2018-2019&nbsp; Blue Flag. All Rights Reserved.&nbsp;蓝色旗帜 版权所有&nbsp;
             <br>
@@ -199,7 +209,7 @@
                 <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
                 <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
             </a>
-            <span>版本号:1.1.0.190402_alpha</span>
+            <span>版本号:1.1.0.190407_alpha</span>
             <span>
                 <script
                         type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");

@@ -2,9 +2,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField, FileField, SelectMultipleField
 from wtforms.validators import DataRequired, EqualTo
-from app.models import Artcate, Auth, Role
+from app.models import Cate, Auth, Role
 
-artcate = Artcate.query.all()
+cate = Cate.query.all()
 authlst = Auth.query.all()
 roleLst = Role.query.all()
 
@@ -94,7 +94,7 @@ class ArtForm(FlaskForm):
             DataRequired("请选择分类！")
         ],
         coerce=int,
-        choices=[(v.id, v.name) for v in artcate],
+        choices=[(v.id, v.name) for v in cate],
         description="分类",
         render_kw={
             "class": "form-control"

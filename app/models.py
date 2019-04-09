@@ -14,69 +14,63 @@ class User(db.Model):
     phone = db.Column(db.String(11), unique=True)
     info = db.Column(db.Text)  # personal introduce
     face = db.Column(db.String(255), unique=True)  # face
-    addtime = db.Column(db.DateTime, index=True, default=datetime.now)
-    uuid = db.Column(db.String(255), unique=True)  # uuid
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now)
     comment = db.relationship("Comment", backref='user')
-
-    def __repr__(self):
-        return "<User %r>" % self.name
+    loginLog = db.relationship("UserLoginLog", backref='user')
 
     def check_pwd(self, pwd):
         return check_password_hash(self.pwd, pwd)
 
 
-class UserLoginlog(db.Model):
-    __tablename__ = 'userloginlog'
+class UserLoginLog(db.Model):
+    __tablename__ = 'userLoginLog'
     __table_args__ = {"useexisting": True}
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     ip = db.Column(db.String(20))
-    addtime = db.Column(db.DateTime, index=True, default=datetime.now())
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now())
 
 
-# admin table
 class Admin(db.Model):
-    __table_args__ = {"useexisting": True}
     __tablename__ = "admin"
+    __table_args__ = {"useexisting": True}
     id = db.Column(db.Integer, primary_key=True)
     account = db.Column(db.String(50), unique=True)
     pwd = db.Column(db.String(100))
     is_super = db.Column(db.SmallInteger)
     role_id = db.Column(db.SmallInteger)
-    addtime = db.Column(db.DateTime, default=datetime.now())
+    addTime = db.Column(db.DateTime, default=datetime.now())
 
     def check_pwd(self, pwd):
         return check_password_hash(self.pwd, pwd)
 
 
 # # 博文分类表
-class Artcate(db.Model):
-    __tablename__: "artcate"
+class Cate(db.Model):
+    __tablename__ = 'cate'
     __table_args__ = {"useexisting": True}
     id = db.Column(db.Integer, primary_key=True)  # 编号
     name = db.Column(db.String(100), unique=True)  # 标题
-    addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
-    article = db.relationship("Article", backref='artcate')  # 博文外键关系关联
-    # Article表示Article表,artcate是自定义字段
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
+    articles = db.relationship("Article", backref='cate')  # 电影外键关系关联
 
 
-# # 博文表
+# 博文表
 class Article(db.Model):
-    __tablename__: "article"
+    __tablename__ = "article"
     __table_args__ = {"useexisting": True}
     id = db.Column(db.Integer, primary_key=True)  # 编号
     title = db.Column(db.String(100), unique=True)  # 标题
     briefInfo = db.Column(db.Text)  # 简介
     cover = db.Column(db.String(255))  # 封面
-    artCateId = db.Column(db.SmallInteger, db.ForeignKey('artcate.id'))
     commentNum = db.Column(db.BigInteger, default=0)  # 评论量
     viewNum = db.Column(db.BigInteger, default=0)  # 查看量
     publisher = db.Column(db.String(50))
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
     comment = db.relationship("Comment", backref='article')
+    cate_id = db.Column(db.Integer, db.ForeignKey('cate.id'))  # 所属标签
 
 
-# 评论表
 class Comment(db.Model):
     __tablename__ = "comment"
     __table_args__ = {"useexisting": True}
@@ -84,7 +78,7 @@ class Comment(db.Model):
     content = db.Column(db.Text)
     article_id = db.Column(db.Integer, db.ForeignKey('article.id'))  # 所属博文
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 所属用户
-    addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 评论时间
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 评论时间
 
 
 # 权限表
@@ -94,7 +88,7 @@ class Auth(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 编号
     name = db.Column(db.String(30), unique=True)  # 权限名称
     url = db.Column(db.String(255), unique=True)  # 权限地址
-    addtime = db.Column(db.DateTime, index=True, default=datetime.now)
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now)
 
 
 # 角色表
@@ -104,20 +98,21 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 编号
     name = db.Column(db.String(100), unique=True)  # 角色名称
     auth = db.Column(db.String(600))  # 权限
-    addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 角色添加时间
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 角色添加时间
 
+
+#
 # if __name__ == '__main__':
 #     db.create_all()
 
 # if __name__ == '__main__':
-#     # 向Admin表添加数据
 #     from werkzeug.security import generate_password_hash
-#
-#     admin = Admin(
-#         account="Thanlon",
-#         pwd=generate_password_hash("wwwnxl"),
-#         is_super=0,
-#         role_id=1
-#     )
-#     db.session.add(admin)
-#     db.session.commit()
+#     print(generate_password_hash("wwwnxl"))
+    # admin = Admin(
+    #     account="Thanlon",
+    #     pwd=generate_password_hash("wwwnxl"),
+    #     is_super=0,
+    #     role_id=1
+    # )
+    # db.session.add(admin)
+    # db.session.commit()

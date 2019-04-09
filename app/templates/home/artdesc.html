@@ -14,115 +14,192 @@
 {% block content %}
 <div class="container" style="margin-top: 75px">
     <div class="row">
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="panel-body">
-            {{art.title}}<br>
-            {{art.briefInfo}}<br>
-            {{art.artcate.name}}
-            {{art.publisher}}<br>
-            {{art.addTime}}<br>
-            {{art.viewNum}}<br>
-            {{art.commentNum}}<br>
-        </div>
-    </div>
-</div>
-{% if "user" not in session %}
-<p>请先登录才可以评论</p>
-{% endif %}
-{% if "user" in session %}
-<div class="col-md-12">
-    <div class="box box-primary">
-        <form role="form" method="post" action="">
-            <div class="box-body">
-                {% for msg in get_flashed_messages(category_filter=["okey"]) %}
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4><i class="icon fa fa-check"></i> 操作成功</h4>
-                    {{ msg }}
-                </div>
-                {% endfor %}
-                {% for msg in get_flashed_messages(category_filter=["error"]) %}
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4><i class="icon fa fa-ban"></i> 操作失败</h4>
-                    {{ msg }}
-                </div>
-                {% endfor %}
-                <div class="form-group">
-                    <label for="input_name">{{form.content.label}}</label>
-                    {{form.content}}
-                    {% for err in form.content.errors %}
-                    <div class="col-md-12">
-                        <font style="color:red">{{ err }}</font>
-                    </div>
-                    {% endfor %}
-                </div>
+        <div class="col-md-3" style="padding:0;padding-left: 3px;padding-right: 3px">
+            <div class="panel panel-default">
+                <div class="panel-heading">热门搜索</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="javascript:;" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;数字类型转换
+                            --Python3</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="javascript:;" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python操作MySql
+                            --Python3</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="javascript:;" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python字符串全解
+                            --Python3</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="javascript:;" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python简单加法器的实现
+                            --Python3</a>
+                    </li>
+                </ul>
             </div>
-            <div class="box-footer">
-                {{form.csrf_token}}
-                {{form.submit}}
+            <div class="panel panel-default">
+                <div class="panel-heading">搜搜热门</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <script type="text/javascript">
+                            var sogou_ad_id = 1023371;
+                            var sogou_ad_height = 240;
+                            var sogou_ad_width = 120;
+                        </script>
+                        <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
+                    </li>
+                </ul>
             </div>
-        </form>
-    </div>
-</div>
-{% endif %}
-<div class="col-md-9">
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3 class="panel-title"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;评论记录</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">赞助商</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <script type="text/javascript">
+                            var sogou_ad_id = 1023371;
+                            var sogou_ad_height = 240;
+                            var sogou_ad_width = 120;
+                        </script>
+                        <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-
-        <div class="panel-body">
-            <ul class="commentList">
-                <li class="item cl">
-                    <a>
-                        <i class="avatar size-L radius">
-                            <img alt="50x50" data-src="holder.js/50x50"
-                                 src=" " class="img-circle"
-                                 style="border:1px solid #abcdef;width:50px;">
-                        </i>
-                    </a>
-                    <div class="comment-main">
-                        <header class="comment-header">
-                            <div class="comment-meta">
-                                <a class="comment-author" href="{{url_for('home.user')}}">
-
-                                </a>
-                                <sapn>关于《》</sapn>
-                                评论于&nbsp;
-
-                            </div>
-                        </header>
-                        <div class="comment-body">
-                            <p></p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-
-            <div class="col-md-12 text-center">
-                {% for v in pageData.items %}
-                <div>
-                    {{v.user.name}}
-                    关于“{{v.article.title}}”
-                    评论于：
-                    {{v.addtime}}
-                    内容：{{v.content}}
-                </div>
-                {% endfor %}
+        <div class="col-md-9" style="padding:0;">
+            <div class="panel panel-default" style="margin: 0">
+                <div class="panel-heading">博文搜索&nbsp;/&nbsp;{{art.title}}</div>
+            </div>
+            <div class="panel panel-default" style="margin-bottom: 2px">
                 <div class="panel-body">
-<!--                    {{pg.page(pageData,'home.index')}}-->
+                    标题: {{art.title}}<br>
+                    分类：{{art.cate.name}}
+                    发布者：{{art.publisher}}<br>
+                    发布时间：{{art.addTime}}<br>
+                    阅读数：{{art.viewNum}}<br>
+                    评论量：{{art.commentNum}}<br>
+                    摘要：{{art.briefInfo}}<br>
+                    内容：
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon "></span>&nbsp;评论</h3>
+                </div>
+                <div class="panel-body">
+                    {% if "user" not in session %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <strong>请先<a href="{{url_for('home.login')}}" class="text-info">登录</a>，才可参与评论！</strong>
+                    </div>
+                    {% endif %}
+                    {% if "user" in session %}
+                    <div class="box panel-default">
+                        <div class="box-body">
+                            {% for msg in get_flashed_messages(category_filter=["okey"]) %}
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    ×
+                                </button>
+                                {{ msg }}
+                            </div>
+                            {% endfor %}
+                            {% for msg in get_flashed_messages(category_filter=["error"]) %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4><i class="icon fa fa-ban"></i> 操作失败</h4>
+                                {{ msg }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <form role="form" style="margin-bottom:6px;" method="post">
+                            <div class="form-group">
+                                <div>
+                                    <label for="input_content">{{form.content.label}}</label><br>
+                                    {{form.content}}
+                                </div>
+                                {% for err in form.content.errors %}
+                                <div class="col-md-12">
+                                    <font style="color:red">{{ err }}</font>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                {{form.csrf_token}}
+                                &nbsp;{{form.submit}}
+                            </div>
+                        </form>
+                        {% endif %}
+                        <div class="breadcrumb">
+                            <li>全部评论()</li>
+                        </div>
+                        {% for v in pageData.items %}
+                        <div class="panel">
+
+                            <div class="panel-heading">
+                                <i class="avatar size-L radius">
+                                    <img alt="50x50" src="holder.js/50x50" class="img-circle"
+                                         style="border:1px solid #abcdef;">
+                                </i>
+                                {{v.user.name}} 评论于{{v.addtime}}
+                            </div>
+                            <div class="panel-body">
+                                &nbsp;&nbsp;&nbsp;&nbsp;{{v.content}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-9" style="padding:0;">
+            <script type="text/javascript">
+                var sogou_ad_id = 1023370;
+                var sogou_ad_height = 60;
+                var sogou_ad_width = 960;
+            </script>
+            <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="background:#414141;color: #b2bcc5;margin-top: 20px;margin-bottom: 2px">
+    <div class="row">
+        <div class="col-md-12  text-center" style="padding: 40px">
+            <a href="{{url_for('home.aboutUs')}}" style="color:#b2bcc5;">关于本站</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.disclaimer')}}" style="color:#b2bcc5;">免责申明</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.blueprint')}}" style="color:#b2bcc5;">本站蓝图</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">留言&nbsp;</a>&nbsp;
+            <!--            <a href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">联系我们</a>-->
+            <br>
+            Copyright © 2018-2019&nbsp; Blue Flag. All Rights Reserved.&nbsp;蓝色旗帜 版权所有&nbsp;
+            <br>
+            <a target="_blank_" href="http://www.miit.gov.cn/" style="color:#b2bcc5;">鲁ICP备17023496号-3</a>
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152802000084">
+                <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
+                <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
+            </a>
+            <span>版本号:1.1.0.190407_alpha</span>
+            <span>
+                <script
+                        type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+                document.write(unescape("%3Cspan id='cnzz_stat_icon_1276774494'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1276774494%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+            </span>
+        </div>
+    </div>
+</div>
 {% endblock %}
 {% block js %}
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1753632933" type="text/javascript"

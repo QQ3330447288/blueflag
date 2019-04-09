@@ -14,25 +14,28 @@
 {% block content %}
 <div class="container" style="margin-top: 75px">
     <div class="row">
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-
-        {{key}}{{count}}
-        {% for v in pageData.items%}
-        <div class="media well addboxshadow" style="background-color: white">
-            <div class="col-md-12">
-                {{v.title}}
-                {{v.briefInfo}}
-                {{v.publisher}}
-                {{v.addtime}}
-                <td><a href="{{url_for('home.artDesc',id=v.id,page=1)}}">查看</a></td>
+        <div class="col-md-12" style="padding:0;">
+            <div class="panel panel-default" style="margin: 0">
+                <div class="panel-heading">关于"{{ key }}"的技术博文，共 {{count}}篇</div>
             </div>
         </div>
-        {% endfor %}
-        <div class="panel-body">
-            {{pg.page(pageData,'home.searchArt')}}
+        <div class="col-md-12" style="padding:0;">
+            <div class="panel panel-default">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        {% for v in pageData.items %}
+                        <div style="padding: 5px;">
+                            <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f">
+                                <span class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span> {{v.title}}&nbsp;
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </li>
+                </ul>
+            </div>
+            <div class="text-center">
+                {{pg.page(pageData,'home.searchArt')}}
+            </div>
         </div>
 
     </div>

@@ -3,7 +3,7 @@ from . import admin
 from app.admin.forms import LoginForm, ArtCateForm, ArtForm, AuthForm, RoleForm, AdminForm
 from flask import render_template, flash, redirect, url_for, session, request
 from functools import wraps
-from app.models import Admin, Artcate, Article, User, Auth, Role
+from app.models import Admin, Cate, Article, User, Auth, Role
 from app import db
 from werkzeug.utils import secure_filename
 import os, datetime, uuid
@@ -60,11 +60,11 @@ def addArtCate():
     artCateForm = ArtCateForm()
     data = artCateForm.data
     if artCateForm.validate_on_submit():
-        artCateCount = Artcate.query.filter_by(name=data['name']).count()
+        artCateCount = Cate.query.filter_by(name=data['name']).count()
         if artCateCount >= 1:
             flash('标签已经存在！', 'error')
             return redirect(url_for('admin.addTag'))
-        cate = Artcate(
+        cate = Cate(
             name=data["name"]
         )
         db.session.add(cate)
@@ -77,7 +77,7 @@ def addArtCate():
 @admin.route('/admin/ArtCate/del/<int:id>', methods=['get', 'post'])
 @adminLoginRule
 def delArtCate(id=None):
-    artcate = Artcate.query.filter_by(
+    artcate = Cate.query.filter_by(
         id=id
     ).first_or_404()
     db.session.delete(artcate)
@@ -91,8 +91,8 @@ def delArtCate(id=None):
 def artCateList(page=None):
     if page == None:
         page = 1
-    pageData = Artcate.query.order_by(
-        Artcate.addtime.desc()
+    pageData = Cate.query.order_by(
+        Cate.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('admin/artCateList.html', pageData=pageData)
 
@@ -113,7 +113,7 @@ def addArt():
             title=data['title'],
             briefInfo=data['briefInfo'],
             cover=cover,
-            artCateId=int(data['artCateId']),
+            cate_id=int(data['artCateId']),
             publisher=session['admin']
         )
         db.session.add(art)
@@ -153,7 +153,7 @@ def userList(page=None):
     if page == None:
         page = 1
     pageData = User.query.order_by(
-        User.addtime.desc()
+        User.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('admin/userList.html', pageData=pageData)
 
@@ -213,6 +213,7 @@ def addRole():
         )
         db.session.add(role)
         db.session.commit()
+
         flash("添加角色成功！", "okey")
     return render_template("admin/addRole.html", form=roleForm)
 
@@ -250,7 +251,7 @@ def addAdmin():
 
 
 # 管理员列表
-@admin.route('/admin/list/<int:page>', methods=['get','post'])
+@admin.route('/admin/list/<int:page>', methods=['get', 'post'])
 @adminLoginRule
 def adminList(page=None):
     if page == None:

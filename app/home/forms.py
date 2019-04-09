@@ -202,7 +202,7 @@ class CommentForm(FlaskForm):
     submit = SubmitField(
         '提交评论',
         render_kw={
-            "class": "btn btn-success",
+            "class": "btn btn-primary",
             "id": "btn-sub"
         }
     )

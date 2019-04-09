@@ -2,13 +2,13 @@
 from . import home
 from flask import render_template, flash, redirect, url_for, session, request
 from app.home.forms import RegisterForm, LoginForm, AlterPwd, CommentForm
-from app.models import User, UserLoginlog, Comment
+from app.models import User, UserLoginLog, Comment
 import requests
 from werkzeug.security import generate_password_hash
 from app import db
 import random
 from functools import wraps
-from app.models import Artcate, Article
+from app.models import Cate, Article
 
 randomCode = str(random.randint(1000, 9999))
 
@@ -66,7 +66,7 @@ def login():
             redirect(url_for('home.login'))
         session['user'] = user.name
         session['id'] = user.id
-        userLoginLog = UserLoginlog(
+        userLoginLog = UserLoginLog(
             user_id=user.id,
             ip=request.remote_addr
         )
@@ -114,7 +114,7 @@ def indexlTmp():
 
 @home.route("/<int:page>", methods=['get'])
 def index(page=None):
-    artCate = Artcate.query.all()
+    artCate = Cate.query.all()
     if page is None:
         page = 1
     pageData = Article.query.order_by(
@@ -144,9 +144,9 @@ def searchArt(page=None):
 def artDesc(id=None, page=None):
     # art = Article.query.get_or_404(int(id))
     art = Article.query.join(
-        Artcate
+        Cate
     ).filter(
-        Artcate.id == Article.artCateId,
+        Cate.id == Article.cate_id,
         Article.id == int(id)
     ).first_or_404()
     art.viewNum = art.viewNum + 1
@@ -172,9 +172,10 @@ def artDesc(id=None, page=None):
     ).join(
         Article
     ).filter(
-        User.id == Comment.user_id
+        User.id == Comment.user_id,
+        Article.id == Comment.article_id
     ).order_by(
-        Comment.addtime.desc()
+        Comment.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('home/artdesc.html', art=art, form=commentForm, pageData=pageData)
 
@@ -211,8 +212,8 @@ def comment():
 def loginlog(page=None):
     if page is None:
         page = 1
-    page_data = UserLoginlog.query.order_by(
-        UserLoginlog.addtime.desc()
+    page_data = UserLoginLog.query.order_by(
+        UserLoginLog.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('home/loginlog.html', page_data=page_data)
 
