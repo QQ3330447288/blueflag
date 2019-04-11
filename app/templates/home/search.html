@@ -21,24 +21,37 @@
         </div>
         <div class="col-md-12" style="padding:0;">
             <div class="panel panel-default">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        {% for v in pageData.items %}
-                        <div style="padding: 5px;">
-                            <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f">
-                                <span class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span> {{v.title}}&nbsp;
-                            </a>
-                        </div>
-                        {% endfor %}
-                    </li>
-                </ul>
-            </div>
-            <div class="text-center">
-                {{pg.page(pageData,'home.searchArt')}}
+                {% for v in pageData.items %}
+                <div class="panel panel-body">
+                    <h4>
+                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}"
+                           style="color:#3f3f3f;font-weight: bold">
+                            {{v.title}}&nbsp;
+                        </a>
+                    </h4>
+                    <p>
+                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f">
+                            {{v.briefInfo}}
+                        </a>
+                    </p>
+                    <p>
+                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f;">
+                            {{v.addTime}}
+                        </a>
+                        <a style="color:#3f3f3f;">|&nbsp;阅读数&nbsp;<span style="color:#3379b7;">{{v.viewNum}}</span>&nbsp;|</a>
+                        <a style="color:#3f3f3f;">&nbsp;评论数&nbsp;<span
+                                style="color:#3379b7;">{{v.commentNum}}</span></a>
+                    </p>
+                </div>
+                {% endfor %}
             </div>
         </div>
-
+        <div class="text-center">
+            {{pg.page(pageData,'home.searchArt')}}
+        </div>
     </div>
+
+</div>
 </div>
 {% endblock %}
 {% block js %}

@@ -17,70 +17,44 @@
         <div class="col-md-3" style="padding:0;padding-left: 3px;padding-right: 3px">
             <div class="panel panel-default">
                 <div class="panel-heading">热门搜索</div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;数字类型转换
-                            --Python3</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python操作MySql
-                            --Python3</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python字符串全解
-                            --Python3</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python简单加法器的实现
-                            --Python3</a>
-                    </li>
-                </ul>
+<!--                <ul class="list-group">-->
+<!--                    <li class="list-group-item">-->
+<!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+<!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;数字类型转换-->
+<!--                            &#45;&#45;Python3</a>-->
+<!--                    </li>-->
+<!--                    <li class="list-group-item">-->
+<!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+<!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python操作MySql-->
+<!--                            &#45;&#45;Python3</a>-->
+<!--                    </li>-->
+<!--                    <li class="list-group-item">-->
+<!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+<!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python字符串全解-->
+<!--                            &#45;&#45;Python3</a>-->
+<!--                    </li>-->
+<!--                    <li class="list-group-item">-->
+<!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+<!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python简单加法器的实现-->
+<!--                            &#45;&#45;Python3</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">搜搜热门</div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <script type="text/javascript">
-                            var sogou_ad_id = 1023371;
-                            var sogou_ad_height = 240;
-                            var sogou_ad_width = 120;
-                        </script>
-                        <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
-                    </li>
-                </ul>
+
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">赞助商</div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <script type="text/javascript">
-                            var sogou_ad_id = 1023371;
-                            var sogou_ad_height = 240;
-                            var sogou_ad_width = 120;
-                        </script>
-                        <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
-                    </li>
-                </ul>
-            </div>
+
         </div>
         <div class="col-md-9" style="padding:0;">
             <div class="panel panel-default" style="margin: 0">
                 <div class="panel-heading">博文搜索&nbsp;/&nbsp;{{art.title}}</div>
             </div>
             <div class="panel panel-default" style="margin-bottom: 2px">
-                <div class="panel-body">
-                    标题: {{art.title}}<br>
-                    分类：{{art.cate.name}}
-                    发布者：{{art.publisher}}<br>
-                    发布时间：{{art.addTime}}<br>
-                    阅读数：{{art.viewNum}}<br>
-                    评论量：{{art.commentNum}}<br>
-                    摘要：{{art.briefInfo}}<br>
-                    内容：
+                <div class="panel-body text-center">
+                    <h3 style="font-weight: bold">{{art.title}}</h3>
+                    <p>{{art.addTime}}&nbsp;{{art.publisher}}&nbsp;分类:{{art.cate.name}}&nbsp;阅读数量:{{art.viewNum}}&nbsp;评论数量:{{art.commentNum}}</p>
+                    <hr>
+
                     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 </div>
             </div>
@@ -162,18 +136,6 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-9" style="padding:0;">
-            <script type="text/javascript">
-                var sogou_ad_id = 1023370;
-                var sogou_ad_height = 60;
-                var sogou_ad_width = 960;
-            </script>
-            <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
-        </div>
-    </div>
-</div>
 <div class="container-fluid" style="background:#414141;color: #b2bcc5;margin-top: 20px;margin-bottom: 2px">
     <div class="row">
         <div class="col-md-12  text-center" style="padding: 40px">
