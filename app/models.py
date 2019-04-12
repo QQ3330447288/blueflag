@@ -69,6 +69,7 @@ class Article(db.Model):
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
     comment = db.relationship("Comment", backref='article')
     cate_id = db.Column(db.Integer, db.ForeignKey('cate.id'))  # 所属标签
+    content = db.Column(db.Text)
 
 
 class Comment(db.Model):
@@ -108,11 +109,12 @@ class Role(db.Model):
 # if __name__ == '__main__':
 #     from werkzeug.security import generate_password_hash
 #     print(generate_password_hash("wwwnxl"))
-    # admin = Admin(
-    #     account="Thanlon",
-    #     pwd=generate_password_hash("wwwnxl"),
-    #     is_super=0,
-    #     role_id=1
-    # )
-    # db.session.add(admin)
-    # db.session.commit()
+# pbkdf2:sha256:150000$uCnHQYQp$fd525ad25ecea3a2382c3a290a8fb0f5cf9e6c23b7328c96524d3b2066796f71
+# admin = Admin(
+#     account="Thanlon",
+#     pwd=generate_password_hash("wwwnxl"),
+#     is_super=0,
+#     role_id=1
+# )
+# db.session.add(admin)
+# db.session.commit()

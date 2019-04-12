@@ -85,7 +85,20 @@ class ArtForm(FlaskForm):
         render_kw={
             "class": "form-control",
             "id": "input_info",
-            "rows": 3
+            "rows": 3,
+            "maxlength": "150",
+        }
+    )
+    content = TextAreaField(
+        label="内容",
+        validators=[
+            DataRequired("请输入简介！")
+        ],
+        description="简介",
+        render_kw={
+            "class": "form-control",
+            "rows": 7,
+            'id': 'result',
         }
     )
     artCateId = SelectField(
@@ -102,9 +115,6 @@ class ArtForm(FlaskForm):
     )
     cover = FileField(
         label="封面",
-        validators=[
-            DataRequired("请上传封面！")
-        ],
         description="封面"
     )
     submit = SubmitField(

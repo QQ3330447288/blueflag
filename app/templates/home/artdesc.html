@@ -17,28 +17,7 @@
         <div class="col-md-3" style="padding:0;padding-left: 3px;padding-right: 3px">
             <div class="panel panel-default">
                 <div class="panel-heading">热门搜索</div>
-<!--                <ul class="list-group">-->
-<!--                    <li class="list-group-item">-->
-<!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
-<!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;数字类型转换-->
-<!--                            &#45;&#45;Python3</a>-->
-<!--                    </li>-->
-<!--                    <li class="list-group-item">-->
-<!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
-<!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python操作MySql-->
-<!--                            &#45;&#45;Python3</a>-->
-<!--                    </li>-->
-<!--                    <li class="list-group-item">-->
-<!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
-<!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python字符串全解-->
-<!--                            &#45;&#45;Python3</a>-->
-<!--                    </li>-->
-<!--                    <li class="list-group-item">-->
-<!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
-<!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python简单加法器的实现-->
-<!--                            &#45;&#45;Python3</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
+
             </div>
             <div class="panel panel-default">
 
@@ -50,12 +29,12 @@
                 <div class="panel-heading">博文搜索&nbsp;/&nbsp;{{art.title}}</div>
             </div>
             <div class="panel panel-default" style="margin-bottom: 2px">
-                <div class="panel-body text-center">
-                    <h3 style="font-weight: bold">{{art.title}}</h3>
-                    <p>{{art.addTime}}&nbsp;{{art.publisher}}&nbsp;分类:{{art.cate.name}}&nbsp;阅读数量:{{art.viewNum}}&nbsp;评论数量:{{art.commentNum}}</p>
+                <div class="panel-body ">
+                    <h3 class="text-center" style="font-weight: bold">{{art.title}}</h3>
+                    <p class="text-center">{{art.addTime}}&nbsp;{{art.publisher}}&nbsp;分类:{{art.cate.name}}&nbsp;阅读数量:{{art.viewNum}}&nbsp;评论数量:{{art.commentNum}}</p>
                     <hr>
-
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <div id="content" hidden>{{art.content}}</div>
+                    <div id="result"></div>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -115,19 +94,22 @@
                             <li>全部评论()</li>
                         </div>
                         {% for v in pageData.items %}
-                        <div class="panel">
 
-                            <div class="panel-heading">
-                                <i class="avatar size-L radius">
-                                    <img alt="50x50" src="holder.js/50x50" class="img-circle"
-                                         style="border:1px solid #abcdef;">
-                                </i>
-                                {{v.user.name}} 评论于{{v.addtime}}
-                            </div>
-                            <div class="panel-body">
-                                &nbsp;&nbsp;&nbsp;&nbsp;{{v.content}}
+                        <div class="col-md-1" style="margin-top: 18px;padding: 0">
+                            <i class="avatar size-L radius">
+                                <img alt="50x50" data-src="holder.js/50x50"
+                                     src=""
+                                     class="img-circle"
+                                     style="border:1px solid #abcdef;width:50px;">
+                            </i>
+                        </div>
+                        <div class="col-md-11" style="margin-top: 3px;padding: 0">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{v.user.name}}评论于{{v.addTime}}</div>
+                                <div class="panel-body">{{v.content}}</div>
                             </div>
                         </div>
+
                         {% endfor %}
                     </div>
                 </div>
@@ -135,7 +117,6 @@
         </div>
     </div>
 </div>
-
 <div class="container-fluid" style="background:#414141;color: #b2bcc5;margin-top: 20px;margin-bottom: 2px">
     <div class="row">
         <div class="col-md-12  text-center" style="padding: 40px">
@@ -166,6 +147,7 @@
 {% block js %}
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1753632933" type="text/javascript"
         charset="utf-8"></script>
+<script src="{{url_for('static',filename='showdown-master/dist/showdown.js')}}"></script>
 <script>
     WB2.anyWhere(function (W) {
         W.widget.followButton({
@@ -178,6 +160,8 @@
     });
 </script>
 <script>
+    // alert($("#content").text());
+    $("#result").html($("#content").text());
     window._bd_share_config = {
         common: {
             bdText: '自定义分享内容',

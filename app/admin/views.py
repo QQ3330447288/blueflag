@@ -114,7 +114,8 @@ def addArt():
             briefInfo=data['briefInfo'],
             cover=cover,
             cate_id=int(data['artCateId']),
-            publisher=session['admin']
+            publisher=session['admin'],
+            content=data['content'],
         )
         db.session.add(art)
         db.session.commit()

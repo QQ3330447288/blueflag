@@ -196,7 +196,8 @@ class CommentForm(FlaskForm):
             DataRequired("请输入评论内容！")
         ],
         render_kw={
-            "id": "input_content"
+            "id": "input_content",
+            'class': 'form-control',
         }
     )
     submit = SubmitField(
