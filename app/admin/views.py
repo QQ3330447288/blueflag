@@ -1,9 +1,9 @@
 # coding:utf8
 from . import admin
-from app.admin.forms import LoginForm, ArtCateForm, ArtForm, AuthForm, RoleForm, AdminForm
+from app.admin.forms import LoginForm, ArtCateForm, ArtForm, AuthForm, RoleForm, AdminForm, LinkForm
 from flask import render_template, flash, redirect, url_for, session, request
 from functools import wraps
-from app.models import Admin, Cate, Article, User, Auth, Role
+from app.models import Admin, Cate, Article, User, Auth, Role, Link, Message
 from app import db
 from werkzeug.utils import secure_filename
 import os, datetime, uuid
@@ -277,3 +277,47 @@ def delAdmin(id=None):
     db.session.commit()
     flash("删除管理员成功！", "okey")
     return redirect(url_for("admin.adminList", page=1))
+
+
+@admin.route('/admin/update/', methods=['get', 'post'])
+@adminLoginRule
+def updatePics(id=1):
+    linkForm = LinkForm()
+    if linkForm.validate_on_submit():
+        link = Link.query.get_or_404(id)
+        print(link)
+        data = linkForm.data
+        link.first = data['first'],
+        link.second = data['second'],
+        link.third = data['third'],
+        link.forth = data['forth'],
+        link.fifth = data['fifth']
+        db.session.add(link)
+        db.session.commit()
+        flash('更新成功！', 'okey')
+        return redirect(url_for('admin.updatePics'))
+    return render_template('admin/updatePics.html', form=linkForm)
+
+
+# 留言列表
+@admin.route('/admin/msg/list/<int:page>', methods=['get'])
+@adminLoginRule
+def msgList(page=None):
+    if page == None:
+        page = 1
+    pageData = Message.query.order_by(
+        Message.addTime.desc()
+    ).paginate(page=page, per_page=10)
+    return render_template('admin/msgList.html', pageData=pageData)
+
+
+@admin.route('/admin/msg/del/<int:id>', methods=['get', 'post'])
+@adminLoginRule
+def delMsg(id=None):
+    msg = Message.query.filter_by(
+        id=id
+    ).first_or_404()
+    db.session.delete(msg)
+    db.session.commit()
+    flash("删除留言成功！", "okey")
+    return redirect(url_for("admin.msgList", page=1))

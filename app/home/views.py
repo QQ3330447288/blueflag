@@ -2,7 +2,7 @@
 from . import home
 from flask import render_template, flash, redirect, url_for, session, request
 from app.home.forms import RegisterForm, LoginForm, AlterPwd, CommentForm, MessageForm
-from app.models import User, UserLoginLog, Comment, Message
+from app.models import User, UserLoginLog, Comment, Message, Link
 import requests
 from werkzeug.security import generate_password_hash
 from app import db
@@ -148,12 +148,13 @@ def indexlTmp():
 @home.route("/<int:page>", methods=['get'])
 def index(page=None):
     artCate = Cate.query.all()
+    link = Link.query.all()
     if page is None:
         page = 1
     pageData = Article.query.order_by(
         Article.addTime.desc()
     ).paginate(page=page, per_page=10)
-    return render_template('home/index.html', pageData=pageData, artcate=artCate)
+    return render_template('home/index.html', pageData=pageData, artcate=artCate, link=link)
 
 
 @home.route("/home/search/<int:page>", methods=['get'])

@@ -241,3 +241,62 @@ class AdminForm(FlaskForm):
             "class": "btn btn-primary"
         }
     )
+
+
+class LinkForm(FlaskForm):
+    first = StringField(
+        label="第一张",
+        validators=[
+            DataRequired("请输入第一张图片链接")
+        ],
+        render_kw={
+            "class": "form-control",
+            "placeholder": "第一张图片链接",
+        }
+    )
+    second = StringField(
+        label="第一张",
+        validators=[
+            DataRequired("请输入第一张图片链接")
+        ],
+        render_kw={
+            "class": "form-control",
+            "placeholder": "第一张图片链接",
+        }
+    )
+    third = StringField(
+        label="第一张",
+        validators=[
+            DataRequired("请输入第一张图片链接")
+        ],
+        render_kw={
+            "class": "form-control",
+            "placeholder": "第一张图片链接",
+        }
+    )
+    forth = StringField(
+        label="第一张",
+        validators=[
+            DataRequired("请输入第一张图片链接")
+        ],
+        render_kw={
+            "class": "form-control",
+            "placeholder": "第一张图片链接",
+        }
+    )
+    fifth = StringField(
+        label="第一张",
+        validators=[
+            DataRequired("请输入第一张图片链接")
+        ],
+        render_kw={
+            "class": "form-control",
+            "placeholder": "第一张图片链接",
+        }
+    )
+    submit = SubmitField(
+        '更新图片',
+        render_kw={
+            "class": "btn btn-primary"
+        }
+    )

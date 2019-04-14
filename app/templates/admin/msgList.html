@@ -1,0 +1,71 @@
+{% extends 'admin/layout.html' %}
+{% import 'ui/adminPage.html' as pg %}
+{% block css %}{% endblock %}
+{% block content %}
+<section class="content-header">
+    <h1>蓝色旗帜后台管理系统</h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> 博文管理</a></li>
+        <li class="active">博文列表</li>
+    </ol>
+</section>
+<section class="content" id="showcontent">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">博文列表</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control pull-right"
+                                   placeholder="请输入关键字...">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    {% for msg in get_flashed_messages(category_filter=["okey"]) %}
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> 操作成功</h4>
+                        {{ msg }}
+                    </div>
+                    {% endfor %}
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th>编号</th>
+                            <th>留言时间</th>
+                            <th>留言内容</th>
+                        </tr>
+                        {% for v in pageData.items %}
+                        <tr>
+                            <td>{{v.id}}</td>
+                            <td>{{v.content}}</td>
+                            <td>
+                                <a href="{{url_for('admin.delMsg',id=v.id)}}" class="label label-danger">删除</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-footer clearfix ">
+                    {{pg.page(pageData,'admin.msgList')}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $("#g-13").addClass("active");
+        $("#g-13-2").addClass("active");
+    });
+</script>
+{% endblock %}

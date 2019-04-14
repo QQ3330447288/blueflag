@@ -221,7 +221,7 @@ class MessageForm(FlaskForm):
         }
     )
     submit = SubmitField(
-        '提交评论',
+        '发布留言',
         render_kw={
             "class": "btn btn-primary",
             "id": "btn-sub"

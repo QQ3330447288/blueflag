@@ -110,7 +110,18 @@ class Role(db.Model):
     auth = db.Column(db.String(600))  # 权限
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 角色添加时间
 
-#
+
+# 图片表
+class Link(db.Model):
+    __tablename__ = "link"
+    __table_args__ = {"useexisting": True}
+    id = db.Column(db.Integer, primary_key=True)  # 编号
+    first = db.Column(db.Text)
+    second = db.Column(db.Text)
+    third = db.Column(db.Text)
+    forth = db.Column(db.Text)
+    fifth = db.Column(db.Text)
+
 # if __name__ == '__main__':
 #     db.create_all()
 

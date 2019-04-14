@@ -25,33 +25,34 @@
                     <li data-target="#myCarousel" data-slide-to="4"></li>
                 </ol>
                 <!-- 轮播（Carousel）项目 -->
+                {% for v in link%}
                 <div class="carousel-inner">
                     <div class="item active">
                         <img width="1390px" height="400px"
-                             src="https://11-1252296038.cos.ap-shanghai.myqcloud.com/banner.gif?q-sign-algorithm=sha1&q-ak=AKID55lBNMDgCmAN4pkrn4wzuey7ROlW44g6&1555034901&q-header-list=&q-url-param-list=&q-signature=5539a64ecee9267df15ced2188f6c93cecb2ab7a&x-cos-security-token=9a9de888915774a0c66f51543eac8e626b272de510001"
-                             alt="First slide">
+                             src="{{v.first}}">
                     </div>
                     <div class="item" style="text-align: center">
                         <img width="1390px" height="400px"
-                             src="https://11-1252296038.cos.ap-shanghai.myqcloud.com/banner.gif?q-sign-algorithm=sha1&q-ak=AKID55lBNMDgCmAN4pkrn4wzuey7ROlW44g6&1555034901&q-header-list=&q-url-param-list=&q-signature=5539a64ecee9267df15ced2188f6c93cecb2ab7a&x-cos-security-token=9a9de888915774a0c66f51543eac8e626b272de510001"
+                             src="{{v.second}}"
                              alt="Second slide">
                     </div>
                     <div class="item">
                         <img width="1390px" height="400px"
-                             src="https://11-1252296038.cos.ap-shanghai.myqcloud.com/banner.gif?q-sign-algorithm=sha1&q-ak=AKID55lBNMDgCmAN4pkrn4wzuey7ROlW44g6&1555034901&q-header-list=&q-url-param-list=&q-signature=5539a64ecee9267df15ced2188f6c93cecb2ab7a&x-cos-security-token=9a9de888915774a0c66f51543eac8e626b272de510001"
+                             src="{{v.third}}"
                              alt="Third slide">
                     </div>
                     <div class="item">
                         <img width="1390px" height="400px"
-                             src="https://11-1252296038.cos.ap-shanghai.myqcloud.com/banner.gif?q-sign-algorithm=sha1&q-ak=AKID55lBNMDgCmAN4pkrn4wzuey7ROlW44g6&1555034901&q-header-list=&q-url-param-list=&q-signature=5539a64ecee9267df15ced2188f6c93cecb2ab7a&x-cos-security-token=9a9de888915774a0c66f51543eac8e626b272de510001"
+                             src="{{v.forth}}"
                              alt="Forth slide">
                     </div>
                     <div class="item">
                         <img width="1390px" height="400px"
-                             src="https://11-1252296038.cos.ap-shanghai.myqcloud.com/banner.gif?q-sign-algorithm=sha1&q-ak=AKID55lBNMDgCmAN4pkrn4wzuey7ROlW44g6&1555034901&q-header-list=&q-url-param-list=&q-signature=5539a64ecee9267df15ced2188f6c93cecb2ab7a&x-cos-security-token=9a9de888915774a0c66f51543eac8e626b272de510001"
+                             src="{{v.fifth}}"
                              alt="fifth slide">
                     </div>
                 </div>
+                {% endfor %}
                 <!-- 轮播（Carousel）导航 -->
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
