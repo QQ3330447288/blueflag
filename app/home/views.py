@@ -1,8 +1,8 @@
 # coding:utf8
 from . import home
 from flask import render_template, flash, redirect, url_for, session, request
-from app.home.forms import RegisterForm, LoginForm, AlterPwd, CommentForm
-from app.models import User, UserLoginLog, Comment
+from app.home.forms import RegisterForm, LoginForm, AlterPwd, CommentForm, MessageForm
+from app.models import User, UserLoginLog, Comment, Message
 import requests
 from werkzeug.security import generate_password_hash
 from app import db
@@ -87,6 +87,11 @@ def sourceCode():
     return render_template('home/sourceCode.html')
 
 
+@home.route('/technologyInfo/')
+def technologyInfo():
+    return render_template('home/technologyInfo.html')
+
+
 @home.route('/disclaimer/')
 def disclaimer():
     return render_template('home/disclaimer.html')
@@ -100,6 +105,34 @@ def cooperation():
 @home.route('/blueprint/')
 def blueprint():
     return render_template('home/blueprint.html')
+
+
+@home.route('/aboutWebmaster/')
+def aboutWebmaster():
+    return render_template('home/aboutWebmaster.html')
+
+
+@home.route('/message/<int:page>', methods=['get', 'post'])
+def message(page=None):
+    messageForm = MessageForm()
+    if messageForm.validate_on_submit():
+        data = messageForm.data
+        message = Message(
+            content=data['content']
+        )
+        db.session.add(message)
+        db.session.commit()
+        flash('留言成功！', 'okey')
+        return redirect(url_for('home.message', page=1))
+    if page == None:
+        page = 1
+    pageData = Message.query.order_by(
+        Message.addTime.desc()
+    ).paginate(page=page, per_page=10)
+    msgcount = Message.query.filter(
+        Message.id
+    ).count()
+    return render_template('home/message.html', form=messageForm, pageData=pageData, msgcount=msgcount)
 
 
 @home.route('/aboutUs/')

@@ -14,16 +14,7 @@
 {% block content %}
 <div class="container" style="margin-top: 75px">
     <div class="row">
-        <div class="col-md-3" style="padding:0;padding-left: 3px;padding-right: 3px">
-            <div class="panel panel-default">
-                <div class="panel-heading">热门搜索</div>
 
-            </div>
-            <div class="panel panel-default">
-
-            </div>
-
-        </div>
         <div class="col-md-9" style="padding:0;">
             <div class="panel panel-default" style="margin: 0">
                 <div class="panel-heading">博文搜索&nbsp;/&nbsp;{{art.title}}</div>
@@ -109,10 +100,18 @@
                                 <div class="panel-body">{{v.content}}</div>
                             </div>
                         </div>
-
                         {% endfor %}
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="padding:0;padding-left: 3px;padding-right: 3px">
+            <div class="panel panel-default">
+                <div class="panel-heading">热门搜索</div>
+
+            </div>
+            <div class="panel panel-default">
+
             </div>
         </div>
     </div>

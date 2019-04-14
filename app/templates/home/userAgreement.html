@@ -20,6 +20,14 @@
                            style="font-weight: bold;">
                             &nbsp;&nbsp;本站蓝图
                         </a>
+                        <a href="{{url_for('home.aboutWebmaster')}}" class="list-group-item btn"
+                           style="font-weight: bold;">
+                            &nbsp;&nbsp;联系运营
+                        </a>
+                        <a href="{{url_for('home.message',page=1)}}" class="list-group-item btn"
+                           style="font-weight: bold;">
+                            &nbsp;&nbsp;留言板
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -32,10 +40,10 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h5>1、本站是正规网站，已通过ICP备案和公安网备案，用户可通过底部版权栏查询本站相关信息</h5>
+                    <h5>1、本站已通过ICP备案和公安网备案，用户可通过底部版权栏查看本站相关信息</h5>
                     <h5>2、用户用于注册的个人相关信息，本站均通过加密算法进行加密，切实保护用户的隐私、保障用户的合法权益</h5>
-                    <h5>4、请用户规范自己的行为，发表文章或评论中切不可出现反政治、有暴力倾向、恐吓、色情等的危害公共安全的言论</对于违反></h5>
-                    <h5>5、特此申明：注册成为本站用户即表示您已同意本协议</h5>
+                    <h5>3、请用户规范自己的行为，发表文章或评论中切不可出现反政治、有暴力倾向、恐吓、色情等的危害公共安全的言论</对于违反></h5>
+                    <h5>4、特此申明：注册成为本站用户即表示您已同意本协议</h5>
                 </div>
                 {% for v in range(20)%}<br>{% endfor%}
             </div>
@@ -48,8 +56,7 @@
             <a href="{{url_for('home.aboutUs')}}" style="color:#b2bcc5;">关于本站</a>&nbsp;|&nbsp;<a
                 href="{{url_for('home.disclaimer')}}" style="color:#b2bcc5;">免责申明</a>&nbsp;|&nbsp;<a
                 href="{{url_for('home.blueprint')}}" style="color:#b2bcc5;">本站蓝图</a>&nbsp;|&nbsp;<a
-                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;"></a>&nbsp;|&nbsp;<a
-                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">联系我们</a>
+                href="{{url_for('home.message',page=1)}}" style="color:#b2bcc5;">联系我们</a>
             <br>
             Copyright © 2018-2019&nbsp; Blue Flag. All Rights Reserved.&nbsp;蓝色旗帜 版权所有&nbsp;
             <br>
@@ -58,7 +65,7 @@
                 <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
                 <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
             </a>
-            <span>版本号:1.1.0.190402_alpha</span>
+            <!--            <span>版本号:1.1.0.190402_alpha</span>-->
             <span>
                 <script
                         type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");

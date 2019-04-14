@@ -8,18 +8,20 @@
                 <div class="panel-heading">关于本站</div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <a href="{{url_for('home.aboutUs')}}" class="list-group-item btn " style="font-weight: bold;">
+                        <a href="{{url_for('home.aboutUs')}}" class="list-group-item btn "
+                           style="font-weight: bold;">
                             &nbsp;&nbsp;用户协议
                         </a>
-                        <a href="{{url_for('home.disclaimer')}}" class="list-group-item btn" style="font-weight: bold;">
+                        <a href="{{url_for('home.disclaimer')}}" class="list-group-item btn"
+                           style="font-weight: bold;">
                             &nbsp;&nbsp;免责申明
                         </a>
                         <a href="{{url_for('home.blueprint')}}" class="list-group-item btn"
-                           style="font-weight: bold;background: #ddd">
+                           style="font-weight: bold;">
                             &nbsp;&nbsp;本站蓝图
                         </a>
                         <a href="{{url_for('home.aboutWebmaster')}}" class="list-group-item btn"
-                           style="font-weight: bold;">
+                           style="font-weight: bold;background: #ddd">
                             &nbsp;&nbsp;联系运营
                         </a>
                         <a href="{{url_for('home.message',page=1)}}" class="list-group-item btn"
@@ -33,20 +35,33 @@
         <div class="col-md-9">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    / 关于本站 / 本站蓝图
+                    / 关于本站 / 关于运营-联系方式
                 </div>
             </div>
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <span class="glyphicon glyphicon-arrow-up"></span> 2019年4月14日：版本号:1.1.0.190414_alpha<br><br>
-                    <span class="glyphicon glyphicon-arrow-up"></span> 2019年4月11日：版本号:1.1.0.190411_alpha<br><br>
-                    <span class="glyphicon glyphicon-arrow-up"></span> 2019年4月7日：版本号1.1.0.190407_alpha <br><br>
-                    <span class="glyphicon glyphicon-arrow-up"></span> 2019年4月2日：版本号:1.1.0.190402_alpha <br> <br>
-                    <span class="glyphicon glyphicon-arrow-up"></span> 2019年3月24日：版本号:1.1.0.190324_alpha
-                    {% for i in range(20)%}
-                    <br>
-                    {% endfor %}
+                    <h5>
+                        <spqn class="glyphicon glyphicon-user"></spqn>
+                        WeChat：ThanlonSmith
+                    </h5>
+                    <h5>
+                        <spqn class="glyphicon glyphicon-user"></spqn>
+                        QQ：3330447288
+                    </h5>
+                    <h5>
+                        <spqn class="glyphicon glyphicon-user"></spqn>
+                        Facebook：ThanlonSmith
+                    </h5>
+                    <h5>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        E-mail&nbsp;1：thanlon@sina.com
+                    </h5>
+                    <h5>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        E-mail&nbsp;2：thanlonsmith@gmail.com
+                    </h5>
                 </div>
+                {% for v in range(20)%}<br>{% endfor%}
             </div>
         </div>
     </div>
@@ -66,7 +81,7 @@
                 <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
                 <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
             </a>
-<!--            <span>版本号:1.1.0.190407_alpha</span>-->
+            <!--            <span>版本号:1.1.0.190402_alpha</span>-->
             <span>
                 <script
                         type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");

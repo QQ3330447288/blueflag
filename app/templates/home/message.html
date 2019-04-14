@@ -1,4 +1,5 @@
 {% extends 'home/layout.html' %}
+{% import "ui/homePage.html" as pg%}
 {% block css %}{% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 75px">
@@ -6,25 +7,26 @@
         <div class="col-md-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">关于本站</div>
-                <div class="panel-body ">
+                <div class="panel-body">
                     <ul class="list-group">
                         <a href="{{url_for('home.aboutUs')}}" class="list-group-item btn "
                            style="font-weight: bold;">
                             &nbsp;&nbsp;用户协议
                         </a>
                         <a href="{{url_for('home.disclaimer')}}" class="list-group-item btn"
-                           style="font-weight: bold;background: #ddd">
+                           style="font-weight: bold;">
                             &nbsp;&nbsp;免责申明
                         </a>
-                        <a href="{{url_for('home.blueprint')}}" class="list-group-item btn" style="font-weight: bold;">
+                        <a href="{{url_for('home.blueprint')}}" class="list-group-item btn"
+                           style="font-weight: bold;">
                             &nbsp;&nbsp;本站蓝图
                         </a>
                         <a href="{{url_for('home.aboutWebmaster')}}" class="list-group-item btn"
                            style="font-weight: bold;">
-                            &nbsp;&nbsp;联系运营
+                            &nbsp;&nbsp;关于运营
                         </a>
                         <a href="{{url_for('home.message',page=1)}}" class="list-group-item btn"
-                           style="font-weight: bold;">
+                           style="font-weight: bold;background: #ddd">
                             &nbsp;&nbsp;留言板
                         </a>
                     </ul>
@@ -34,18 +36,65 @@
         <div class="col-md-9">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    / 关于本站 / 免责申明
+                    / 关于本站 / 留言板
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h5>1、本站面向全国互联网科技爱好者，是互联网信息资讯共享的友好平台，共享优质的互联网信息资讯、技术文章、源代码项目等……</h5>
-<!--                    <h5>2、项目源码由已申请开发者权限的用户上传，有的需要收取少量费用</h5>-->
-<!--                    <h5>3、开发者上传的项目源码，需要通过本平台的审核才能被用户下载</h5>-->
-<!--                    <h5>4、开发者上传的项目源码未通过审核，平台将予以驳回，不存储开发者未通过审核的资源</h5>-->
-                    {% for i in range(20)%}
-                    <br>
+                    <h5>
+                        <span class="glyphicon glyphicon-folder-close"></span>
+                        资源共享交流QQ群1：917246593
+                    </h5>
+                    <hr>
+                    {% for msg in get_flashed_messages(category_filter=["okey"]) %}
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+                        {{ msg }}
+                    </div>
                     {% endfor %}
+                    {% for msg in get_flashed_messages(category_filter=["error"]) %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4><i class="icon fa fa-ban"></i> 操作失败</h4>
+                        {{ msg }}
+                    </div>
+                    {% endfor %}
+                    <form role="form" style="margin-bottom:6px;" method="post">
+                        <div class="form-group">
+                            <div>
+                                <label for="input_content">{{form.content.label}}</label><br>
+                                {{form.content}}
+                            </div>
+                            {% for err in form.content.errors %}
+                            <div class="col-md-12">
+                                <font style="color:red">{{ err }}</font>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{form.csrf_token}}
+                            &nbsp;{{form.submit}}
+                        </div>
+                    </form>
+                    <div class="breadcrumb">
+                        <li>全部评论({{msgcount}})</li>
+                    </div>
+                    {% for v in pageData.items %}
+                    <div class="col-md-12" style="margin-top: 3px;padding: 0">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">{{v.id}}楼&nbsp;留言于{{v.addTime}}</div>
+                            <div class="panel-body">{{v.content}}</div>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                </div>
+                <div class="panel-body">
+                    {{pg.page(pageData,'home.message')}}
                 </div>
             </div>
         </div>
@@ -66,7 +115,7 @@
                 <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
                 <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
             </a>
-<!--            <span>版本号:1.1.0.190407_alpha</span>-->
+            <!--            <span>版本号:1.1.0.190402_alpha</span>-->
             <span>
                 <script
                         type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");

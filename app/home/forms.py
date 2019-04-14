@@ -207,3 +207,23 @@ class CommentForm(FlaskForm):
             "id": "btn-sub"
         }
     )
+
+
+class MessageForm(FlaskForm):
+    content = TextAreaField(
+        label="内容",
+        validators=[
+            DataRequired("请输入评论内容！")
+        ],
+        render_kw={
+            "id": "input_content",
+            'class': 'form-control',
+        }
+    )
+    submit = SubmitField(
+        '提交评论',
+        render_kw={
+            "class": "btn btn-primary",
+            "id": "btn-sub"
+        }
+    )

@@ -82,6 +82,15 @@ class Comment(db.Model):
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 评论时间
 
 
+# 留言表
+class Message(db.Model):
+    __tablename__ = "message"
+    __table_args__ = {"useexisting": True}
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text)
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 留言时间
+
+
 # 权限表
 class Auth(db.Model):
     __tablename__ = "auth"
@@ -100,7 +109,6 @@ class Role(db.Model):
     name = db.Column(db.String(100), unique=True)  # 角色名称
     auth = db.Column(db.String(600))  # 权限
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 角色添加时间
-
 
 #
 # if __name__ == '__main__':
