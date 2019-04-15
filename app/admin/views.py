@@ -119,7 +119,7 @@ def addArt():
         )
         db.session.add(art)
         db.session.commit()
-        flash("添加标签成功！", "okey")
+        flash("发布文章成功!", "okey")
         redirect(url_for("admin.addArt"))
     return render_template('admin/addArt.html', form=artForm)
 
@@ -141,7 +141,11 @@ def delArt(id=None):
 def ArtList(page=None):
     if page == None:
         page = 1
-    pageData = Article.query.order_by(
+    pageData = Article.query.join(
+        Cate
+    ).filter(
+        Article.cate_id == Cate.id
+    ).order_by(
         Article.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('admin/artList.html', pageData=pageData)

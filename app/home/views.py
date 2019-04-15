@@ -246,10 +246,16 @@ def comment():
 def loginlog(page=None):
     if page is None:
         page = 1
-    page_data = UserLoginLog.query.order_by(
+    logincount = UserLoginLog.query.filter(
+        UserLoginLog.user_id == session['id']
+    ).count()
+    print(logincount)
+    page_data = UserLoginLog.query.filter(
+        UserLoginLog.user_id == session['id']
+    ).order_by(
         UserLoginLog.addTime.desc()
     ).paginate(page=page, per_page=10)
-    return render_template('home/loginlog.html', page_data=page_data)
+    return render_template('home/loginlog.html', page_data=page_data, logincount=logincount)
 
 
 @home.route('/joke/', methods=['get'])

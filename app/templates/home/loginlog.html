@@ -8,18 +8,16 @@
         <div class="col-md-9">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;登陆日志</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;登陆日志(已登录{{logincount}}次)</h3>
                 </div>
                 <div class="panel-body">
                     <table class="table table-hover" style="text-align: center;">
                         <tr>
-                            <th style="text-align: center">日志编号</th>
                             <th style="text-align: center">IP</th>
                             <th style="text-align: center">登录时间</th>
                         </tr>
                         {% for item in page_data.items %}
                         <tr>
-                            <td>{{item.id}}</td>
                             <td>{{item.ip}}</td>
                             <td>{{item.addTime}}</td>
                         </tr>
