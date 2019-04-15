@@ -147,14 +147,29 @@ def indexlTmp():
 
 @home.route("/<int:page>", methods=['get'])
 def index(page=None):
-    artCate = Cate.query.all()
     link = Link.query.all()
     if page is None:
         page = 1
-    pageData = Article.query.order_by(
+    pageData = Article.query.join(
+        Cate
+    ).filter(
+        Cate.id == Article.cate_id
+    ).order_by(
         Article.addTime.desc()
     ).paginate(page=page, per_page=10)
-    return render_template('home/index.html', pageData=pageData, artcate=artCate, link=link)
+    pageDataView = Article.query.filter(
+        Article.viewNum > 0
+    ).order_by(
+        Article.viewNum.desc()
+    ).paginate(page=1, per_page=5)
+    pageDataComment = Article.query.filter(
+        Article.commentNum > 0
+    ).order_by(
+        Article.commentNum.desc()
+    ).paginate(page=1, per_page=5)
+    artCate = Cate.query.all()
+    return render_template('home/index.html', pageData=pageData, artcate=artCate, link=link, pageDataView=pageDataView,
+                           pageDataComment=pageDataComment)
 
 
 @home.route("/home/search/<int:page>", methods=['get'])

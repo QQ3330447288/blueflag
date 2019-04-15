@@ -64,7 +64,7 @@
                 </a>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">最新博文</div>
+                <div class="panel-heading">最新文章</div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body panel-default">
@@ -78,13 +78,7 @@
                             <p class="card-text">{{v.briefInfo}}</p>
                             分类：
                             <sapn style="margin-bottom: 3px">
-                                {% if v.cate_id ==1 %}
-                                Python
-                                {% elif v.cate_id ==3 %}
-                                Linux
-                                {% else %}
-                                Django
-                                {% endif%}
+                               {{v.cate.name}}
                                 <span
                                         class="badge"></span>
                             </sapn>
@@ -117,7 +111,7 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">博文分类</div>
+                <div class="panel-heading">分类</div>
                 <div class="panel-body">
                     {% for v in artcate%}
                     <a style="margin-bottom: 3px" type="button" class="btn btn-primary btn-sm"> {{v.name}}<span
@@ -128,56 +122,53 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">热门博文</div>
+                <div class="panel-heading">阅读榜Top5</div>
                 <ul class="list-group">
+                    {% for v in pageDataView.items%}
                     <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;数字类型转换
-                            --Python3</a>
+                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;{{v.title}}（{{v.viewNum}}）</a>
                     </li>
+                    {%endfor%}
+                </ul>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">热评榜Top5</div>
+                <ul class="list-group">
+                    {% for v in pageDataComment.items%}
                     <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python操作MySql
-                            --Python3</a>
+                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;{{v.title}}（{{v.commentNum}}）</a>
                     </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python字符串全解
-                            --Python3</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python简单加法器的实现
-                            --Python3</a>
-                    </li>
+                    {%endfor%}
                 </ul>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">热门源码</div>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于SSM的图书馆管理系统</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于SSH的汽车销售网站
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于Flask框架的电影网站</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于人脸识别的门禁系统
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于JavaWeb的学校资源管理系统
-                        </a>
-                    </li>
+                    <!--                    <li class="list-group-item">-->
+                    <!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+                    <!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于SSM的图书馆管理系统</a>-->
+                    <!--                    </li>-->
+                    <!--                    <li class="list-group-item">-->
+                    <!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+                    <!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于SSH的汽车销售网站-->
+                    <!--                        </a>-->
+                    <!--                    </li>-->
+                    <!--                    <li class="list-group-item">-->
+                    <!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+                    <!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于Flask框架的电影网站</a>-->
+                    <!--                    </li>-->
+                    <!--                    <li class="list-group-item">-->
+                    <!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+                    <!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于人脸识别的门禁系统-->
+                    <!--                        </a>-->
+                    <!--                    </li>-->
+                    <!--                    <li class="list-group-item">-->
+                    <!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->
+                    <!--                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;基于JavaWeb的学校资源管理系统-->
+                    <!--                        </a>-->
+                    <!--                    </li>-->
                 </ul>
             </div>
             <div class="panel panel-default">
