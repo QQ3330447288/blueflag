@@ -21,6 +21,16 @@ def adminLoginRule(f):
     return decoratedFunction
 
 
+# 定义装饰器
+def adminAuth(f):
+    @wraps(f)
+    def decoratedFunction(*args, **kwargs):
+
+        return f(*args, **kwargs)
+
+    return decoratedFunction
+
+
 # 修改文件名称
 def change_filename(filename):  # 需要将filename转换为安全的文件爱你名称（filename）有时间前缀字符串拼接的名称
     file_info = os.path.splitext(filename)  # 分割成后缀加前缀
@@ -188,7 +198,7 @@ def authList(page=None):
     if page == None:
         page = 1
     pageData = Auth.query.order_by(
-        Auth.addtime.desc()
+        Auth.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('admin/authList.html', pageData=pageData)
 
@@ -230,7 +240,7 @@ def roleList(page=None):
     if page == None:
         page = 1
     pageData = Role.query.order_by(
-        Role.addtime.desc()
+        Role.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('admin/roleList.html', pageData=pageData)
 
@@ -266,7 +276,7 @@ def adminList(page=None):
     ).filter(
         Role.id == Admin.role_id
     ).order_by(
-        Admin.addtime.desc()
+        Admin.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template('admin/adminList.html', pageData=pageData)
 

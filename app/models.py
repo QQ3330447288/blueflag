@@ -38,7 +38,7 @@ class Admin(db.Model):
     account = db.Column(db.String(50), unique=True)
     pwd = db.Column(db.String(100))
     is_super = db.Column(db.SmallInteger)
-    role_id = db.Column(db.SmallInteger)
+    role_id = db.Column(db.SmallInteger, db.ForeignKey('role.id'))
     addTime = db.Column(db.DateTime, default=datetime.now())
 
     def check_pwd(self, pwd):
@@ -101,7 +101,7 @@ class Auth(db.Model):
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)
 
 
-# 角色表
+# 角色表,角色和权限是多对一
 class Role(db.Model):
     __tablename__ = "role"
     __table_args__ = {"useexisting": True}
@@ -109,6 +109,7 @@ class Role(db.Model):
     name = db.Column(db.String(100), unique=True)  # 角色名称
     auth = db.Column(db.String(600))  # 权限
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # 角色添加时间
+    admins = db.relationship("Admin", backref='role')
 
 
 # 图片表
@@ -121,7 +122,7 @@ class Link(db.Model):
     third = db.Column(db.Text)
     forth = db.Column(db.Text)
     fifth = db.Column(db.Text)
-
+#
 # if __name__ == '__main__':
 #     db.create_all()
 

@@ -54,8 +54,12 @@
                             {% else %}
                             <td>普通管理员</td>
                             {% endif %}
+                            {% if v.is_super ==0 %}
+                            <td>全部</td>
+                            {% else %}
                             <td>{{v.role.name}}</td>
-                            <td>{{v.addtime}}</td>
+                            {% endif %}
+                            <td>{{v.addTime}}</td>
                             <td>
                                 <a href="" class="label label-success">编辑</a>
                                 <a href="{{url_for('admin.delAdmin',id = v.id)}}" class="label label-danger">删除</a>
