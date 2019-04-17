@@ -178,12 +178,12 @@ def searchArt(page=None):
         page = 1
     key = request.args.get('keyWords', '')
     pageData = Article.query.filter(
-        Article.title.ilike('%' + key + '%')
+        Article.content.ilike('%' + key + '%')
     ).order_by(
         Article.addTime.desc()
     ).paginate(page=page, per_page=10)
     artCount = Article.query.filter(
-        Article.title.ilike('%' + key + '%')
+        Article.content.ilike('%' + key + '%')
     ).count()
     return render_template('home/search.html', key=key, pageData=pageData, count=artCount)
 
@@ -214,6 +214,12 @@ def artDesc(id=None, page=None):
         art.commentNum = art.commentNum + 1
     db.session.add(art)
     db.session.commit()
+    article = Article.query.join(
+        Cate
+    ).filter(
+        Article.cate_id == Cate.id,
+        Article.id == int(id)
+    ).first()
     if page == None:
         page = 1
     pageData = Comment.query.join(
@@ -222,7 +228,7 @@ def artDesc(id=None, page=None):
         Article
     ).filter(
         User.id == Comment.user_id,
-        Article.id == Comment.article_id
+        Article.id == article.id
     ).order_by(
         Comment.addTime.desc()
     ).paginate(page=page, per_page=10)

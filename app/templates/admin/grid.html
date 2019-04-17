@@ -1,5 +1,5 @@
 <ul class="sidebar-menu">
-<!--    <li class="header">管理菜单</li>-->
+    <!--    <li class="header">管理菜单</li>-->
     <li class="treeview" id="g-1">
         <a href="#">
             <i class="fa fa-home" aria-hidden="true"></i>
@@ -52,25 +52,6 @@
             </li>
         </ul>
     </li>
-    <!--    <li class="treeview" id="g-4">-->
-    <!--        <a href="#">-->
-    <!--            <i class="fa fa-film" aria-hidden="true"></i>-->
-    <!--            <span>预告管理</span>-->
-    <!--            <span class="label label-primary pull-right">2</span>-->
-    <!--        </a>-->
-    <!--        <ul class="treeview-menu">-->
-    <!--            <li id="g-4-1">-->
-    <!--                <a href="">-->
-    <!--                    <i class="fa fa-circle-o"></i> 添加预告-->
-    <!--                </a>-->
-    <!--            </li>-->
-    <!--            <li id="g-4-2">-->
-    <!--                <a href="">-->
-    <!--                    <i class="fa fa-circle-o"></i> 预告列表-->
-    <!--                </a>-->
-    <!--            </li>-->
-    <!--        </ul>-->
-    <!--    </li>-->
     <li class="treeview" id="g-5">
         <a href="#">
             <i class="fa fa-users" aria-hidden="true"></i>
@@ -93,7 +74,7 @@
         </a>
         <ul class="treeview-menu">
             <li id="g-6-1">
-                <a href="">
+                <a href="{{url_for('admin.commentList',page=1)}}">
                     <i class="fa fa-circle-o"></i> 评论列表
                 </a>
             </li>

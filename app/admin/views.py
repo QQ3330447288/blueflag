@@ -3,7 +3,7 @@ from . import admin
 from app.admin.forms import LoginForm, ArtCateForm, ArtForm, AuthForm, RoleForm, AdminForm, LinkForm
 from flask import render_template, flash, redirect, url_for, session, request
 from functools import wraps
-from app.models import Admin, Cate, Article, User, Auth, Role, Link, Message
+from app.models import Admin, Cate, Article, User, Auth, Role, Link, Message, Comment
 from app import db
 from werkzeug.utils import secure_filename
 import os, datetime, uuid
@@ -25,7 +25,6 @@ def adminLoginRule(f):
 def adminAuth(f):
     @wraps(f)
     def decoratedFunction(*args, **kwargs):
-
         return f(*args, **kwargs)
 
     return decoratedFunction
@@ -335,3 +334,21 @@ def delMsg(id=None):
     db.session.commit()
     flash("删除留言成功！", "okey")
     return redirect(url_for("admin.msgList", page=1))
+
+
+@admin.route('/admin/comment/list/<int:page>', methods=['get'])
+@adminLoginRule
+def commentList(page=None):
+    if page == None:
+        page = 1
+    pageData = Comment.query.join(
+        User
+    ).join(
+        Article
+    ).filter(
+        Comment.user_id == User.id,
+        Comment.article_id == Article.id
+    ).order_by(
+        Comment.addTime.desc()
+    ).paginate(page=page, per_page=10)
+    return render_template('admin/commentList.html', pageData=pageData)
