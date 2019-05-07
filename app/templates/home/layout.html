@@ -5,10 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
     <meta name="description" content="本站面向全国互联网科技爱好者，是互联网信息资讯共享的友好平台，共享优质的互联网信息资讯、技术文章、源代码项目等……">
-    <meta name="keywords" content="蓝色旗帜，蓝色旗帜网，源代码，免费，站长，牛新龙，互联网信息共享平台，Thanlon，thanlon">
-    <meta name="baidu_union_verify" content="8ec475a6cd51c550fc3f8f4babfdb795">
-    <meta name="sogou_site_verification" content="GcxzwSun46">
+    <meta name="keywords" content="蓝色旗帜，蓝色旗帜网，源代码，免费，互联网信息共享">
     <meta name="baidu-site-verification" content="Dw5G7xfcTl">
+    <meta name="sogou_site_verification" content="29EYehXI4Y"/>
     <meta baidu-gxt-verify-token="38addd2618efdb36c13764c622e3ed4c">
     <title>蓝色旗帜</title>
     <link rel="icon" href="{{url_for('static',filename='images/flag.png')}}" type="image/x-icon">
@@ -109,13 +108,13 @@
 <script src="{{url_for('static',filename='js/bootstrap.thanlon.js')}}"></script>
 <!--百度统计-->
 <script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?a4cfd24e1c3f45d009d1911f97187ee4";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c93abd762675e8a70bc8887b2ec7dc41";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
 </script>
 <!--/百度统计-->
 <script>
@@ -129,6 +128,8 @@
             window.location.href = "{{url_for('home.searchArt',page=1)}}?keyWords=" + key;
         })
     })
+
+
 </script>
 {% block js %}
 {% endblock %}
