@@ -10,6 +10,7 @@
         margin: 1px;
     }
 
+
 </style>
 {% endblock %}
 {% block content %}
@@ -123,7 +124,7 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">阅读榜Top5</div>
+                <div class="panel-heading">阅读榜</div>
                 <ul class="list-group">
                     {% for v in pageDataView.items%}
                     <li class="list-group-item">
@@ -134,7 +135,7 @@
                 </ul>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">热评榜Top5</div>
+                <div class="panel-heading">热评榜</div>
                 <ul class="list-group">
                     {% for v in pageDataComment.items%}
                     <li class="list-group-item">
@@ -142,6 +143,11 @@
                                 class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;{{v.title}}（{{v.commentNum}}）</a>
                     </li>
                     {%endfor%}
+                </ul>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">最新科技资讯</div>
+                <ul class="list-group">
                 </ul>
             </div>
             <div class="panel panel-default">
@@ -172,24 +178,19 @@
                     <!--                    </li>-->
                 </ul>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">赞助商</div>
-                <ul class="list-group">
-                    <!--                    <li class="list-group-item">-->
-                    <!--                        <script type="text/javascript">-->
-                    <!--                            var sogou_ad_id = 1023371;-->
-                    <!--                            var sogou_ad_height = 240;-->
-                    <!--                            var sogou_ad_width = 120;-->
-                    <!--                        </script>-->
-                    <!--                        <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
-                    <!--                    </li>-->
-                </ul>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">友情链接</div>
-                <ul class="list-group">
-                </ul>
-            </div>
+            <!--            <div class="panel panel-default">-->
+            <!--                <div class="panel-heading">赞助商</div>-->
+            <!--                <ul class="list-group">-->
+            <!--                    &lt;!&ndash;                    <li class="list-group-item">&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                        <script type="text/javascript">&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                            var sogou_ad_id = 1023371;&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                            var sogou_ad_height = 240;&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                            var sogou_ad_width = 120;&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                        </script>&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                        <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                    </li>&ndash;&gt;-->
+            <!--                </ul>-->
+            <!--            </div>-->
         </div>
     </div>
 </div>
@@ -216,43 +217,44 @@
 {% block js %}
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1753632933" type="text/javascript"
         charset="utf-8"></script>
-<script>
-    WB2.anyWhere(function (W) {
-        W.widget.followButton({
-            'nick_name': '蓝旗网',  //用户昵称
-            'id': "wb_follow_btn",
-            'show_head': true, //是否显示头像
-            'show_name': true, //是否显示名称
-            'show_cancel': true //是否显示取消关注按钮
-        });
-    });
-    window._bd_share_config = {
-        common: {
-            bdText: '自定义分享内容',
-            bdDesc: '自定义分享摘要',
-            bdUrl: 'https://www.thanlon.cn',
-            bdPic: '自定义分享图片'
-        },
-        share: [{
-            "bdSize": 24
-        }],
-        slide: [{
-            bdImg: 4,
-            bdPos: "right",
-            bdTop: 200
-        }],
-        image: [{
-            viewType: 'list',
-            viewPos: 'top',
-            viewColor: 'black',
-            viewSize: '24',
-            viewList: ['sqq', 'weixin', 'qzone', 'tsina', 'douban']
-        }],
-        selectShare: [{
-            "bdselectMiniList": ['sqq', 'weixin', 'qzone', 'tsina', 'douban']
-        }]
-    };
-    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+<!--<script>-->
+<!--    WB2.anyWhere(function (W) {-->
+<!--        W.widget.followButton({-->
+<!--            'nick_name': '蓝旗网',  //用户昵称-->
+<!--            'id': "wb_follow_btn",-->
+<!--            'show_head': true, //是否显示头像-->
+<!--            'show_name': true, //是否显示名称-->
+<!--            'show_cancel': true //是否显示取消关注按钮-->
+<!--        });-->
+<!--    });-->
+<!--    window._bd_share_config = {-->
+<!--        common: {-->
+<!--            bdText: '自定义分享内容',-->
+<!--            bdDesc: '自定义分享摘要',-->
+<!--            bdUrl: 'https://www.thanlon.cn',-->
+<!--            bdPic: '自定义分享图片'-->
+<!--        },-->
+<!--        share: [{-->
+<!--            "bdSize": 24-->
+<!--        }],-->
+<!--        slide: [{-->
+<!--            bdImg: 4,-->
+<!--            bdPos: "right",-->
+<!--            bdTop: 200-->
+<!--        }],-->
+<!--        image: [{-->
+<!--            viewType: 'list',-->
+<!--            viewPos: 'top',-->
+<!--            viewColor: 'black',-->
+<!--            viewSize: '24',-->
+<!--            viewList: ['sqq', 'weixin', 'qzone', 'tsina', 'douban']-->
+<!--        }],-->
+<!--        selectShare: [{-->
+<!--            "bdselectMiniList": ['sqq', 'weixin', 'qzone', 'tsina', 'douban']-->
+<!--        }]-->
+<!--    };-->
+<!--    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];-->
 
-</script>
+
+<!--</script>-->
 {% endblock %}

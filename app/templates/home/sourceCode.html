@@ -9,23 +9,70 @@
     <div class="row">
         <div class="col-md-12" style="padding:0;">
             <div class="panel panel-default" style="margin: 0">
-                <div class="panel-heading">源码共享/</div>
+                <div class="panel-heading">资源共享 / <a href="">Java项目源码</a> / <a href="">Java Web</a></div>
             </div>
             <div class="panel panel-default text-center">
                 <div class="panel-body ">
-                    {% if 'user' in session %}
-                    {% for i in range(40)%}
-                    <div class="col-md-3" style="padding: 5px">
-                        <a href="">
-                            <img src="{{url_for('static',filename='images/python.png')}}" alt=""
-                                 class="img-responsive img-thumbnail">
-                        </a>
-                        <p>基于***管理系统</p>
-                    </div>
-                    {%endfor%}
-                    {% else %}
-                    <div class="col-md-12">您暂时没有查看的权限,<a href="{{url_for('home.login')}}">登录</a>后可查看！</div>
-                    {% endif %}
+                    <ul class="nav nav-tabs  ">
+                        <li role="presentation" class="active dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                Java项目源码 <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li role="presentation"><a href="#">Java Web</a></li>
+                                <li role="presentation"><a href="#">SSM</a></li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                PHP项目源码 <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li role="presentation"><a href="#">ThinkPHP3.2</a></li>
+                                <li role="presentation"><a href="#">ThinkPHP5.0</a></li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                Python项目源码 <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li role="presentation"><a href="#">Django</a></li>
+                                <li role="presentation"><a href="#">Flask</a></li>
+                                <li role="presentation"><a href="#">Tornado</a></li>
+                                <li role="presentation"><a href="#">网络爬虫</a></li>
+                            </ul>
+                        </li>
+                        <!--                        <li role="presentation" class="dropdown">-->
+                        <!--                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"-->
+                        <!--                               aria-haspopup="true" aria-expanded="false">-->
+                        <!--                                Android项目源码 <span class="caret"></span>-->
+                        <!--                            </a>-->
+                        <!--                        </li>-->
+                        <li role="presentation"><a href="#">Android项目源码</a></li>
+
+                        <!--                        <li role="presentation" class="dropdown">-->
+                        <!--                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"-->
+                        <!--                               aria-haspopup="true" aria-expanded="false">-->
+                        <!--                                混合开发项目源码 <span class="caret"></span>-->
+                        <!--                            </a>-->
+                        <!--                        </li>-->
+                        <li role="presentation"><a href="#">混合开发项目源码</a></li>
+                        <li role="presentation"><a href="#">2020毕业设计(高质量)</a></li>
+                    </ul>
+<!--                    <div class="col-md-3" style="padding: 5px">-->
+<!--                        <a href="">-->
+<!--                            <img src="{{url_for('static',filename='images/python.png')}}" alt=""-->
+<!--                                 class="img-responsive img-thumbnail">-->
+<!--                        </a>-->
+<!--                        <p>基于***管理系统</p>-->
+<!--                    </div>-->
+                    {% for i in range(10)%}
+                    <br>
+                    {% endfor %}
                 </div>
                 <div class="panel-body">
                     <nav aria-label="...">
@@ -56,22 +103,15 @@
             <a href="{{url_for('home.aboutUs')}}" style="color:#b2bcc5;">关于本站</a>&nbsp;|&nbsp;<a
                 href="{{url_for('home.disclaimer')}}" style="color:#b2bcc5;">免责申明</a>&nbsp;|&nbsp;<a
                 href="{{url_for('home.blueprint')}}" style="color:#b2bcc5;">本站蓝图</a>&nbsp;|&nbsp;<a
-                href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">留言&nbsp;</a>&nbsp;
+                href="{{url_for('home.message',page=1)}}" style="color:#b2bcc5;">联系我们&nbsp;</a>&nbsp;
             <!--            <a href="{{url_for('home.index',page=1)}}" style="color:#b2bcc5;">联系我们</a>-->
             <br>
             Copyright © 2018-2019&nbsp; Blue Flag. All Rights Reserved.&nbsp;蓝色旗帜 版权所有&nbsp;
             <br>
-            <a target="_blank_" href="http://www.miit.gov.cn/" style="color:#b2bcc5;">鲁ICP备17023496号-3</a>
-            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152802000084">
-                <img src="{{url_for('static',filename='images/beian.png')}}" style="padding-bottom:6px"/>
-                <span style="color:#b2bcc5;">豫公网安备 41152802000084号</span>
-            </a>
-<!--            <span>版本号:1.1.0.190407_alpha</span>-->
+            <a target="_blank_" href="http://www.miit.gov.cn/" style="color:#b2bcc5;">豫ICP备19014367号-1</a>
+            <!--            <span>版本号:1.1.0.190411_alpha</span>-->
             <span>
-                <script
-                        type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-                document.write(unescape("%3Cspan id='cnzz_stat_icon_1276774494'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1276774494%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-                </script>
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1276774494'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1276774494%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
             </span>
         </div>
     </div>
@@ -82,34 +122,16 @@
     $(document).ready(function () {
         $("#item2").addClass("active_diy");
     })
-</script>
-<script>
-    window._bd_share_config = {
-        common: {
-            bdText: '自定义分享内容',
-            bdDesc: '自定义分享摘要',
-            bdUrl: '自定义分享url地址',
-            bdPic: '自定义分享图片'
-        },
-        share: [{
-            "bdSize": 16
-        }],
-        slide: [{
-            bdImg: 4,
-            bdPos: "left",
-            bdTop: 100
-        }],
-        image: [{
-            viewType: 'list',
-            viewPos: 'top',
-            viewColor: 'black',
-            viewSize: '24',
-            viewList: ['qzone', 'tsina', 'huaban', 'tqq', 'renren']
-        }],
-        selectShare: [{
-            "bdselectMiniList": ['qzone', 'tqq', 'kaixin001', 'bdxc', 'tqf']
-        }]
-    }
-    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+
+
+
+
+
+
+
+
+
+
+
 </script>
 {% endblock %}

@@ -115,8 +115,19 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
+
 </script>
 <!--/百度统计-->
+<!--360自动提交-->
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.
+com/11.0.1.js?a96270f2a792934ed7db02ce53da597a":"https://jspassport.ssl.qhimg.co
+m/11.0.1.js?a96270f2a792934ed7db02ce53da597a";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+<!--/360自动提交-->
 <script>
     document.oncontextmenu = function (e) {
         return false;
@@ -128,7 +139,6 @@ var _hmt = _hmt || [];
             window.location.href = "{{url_for('home.searchArt',page=1)}}?keyWords=" + key;
         })
     })
-
 
 </script>
 {% block js %}
