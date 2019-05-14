@@ -11,6 +11,7 @@
     }
 
 
+
 </style>
 {% endblock %}
 {% block content %}
@@ -66,7 +67,7 @@
                 </a>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">最新文章</div>
+                <div class="panel-heading" style="background:rgba(0,0,0,.0001)">最新文章</div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body panel-default">
@@ -106,14 +107,14 @@
         </div>
         <div class="col-md-3" style=" padding:0; padding-left: 3px;padding-right: 3px">
             <div class="panel panel-default">
-                <div class="panel-heading">平台运营</div>
+                <div class="panel-heading" style="background:rgba(0,0,0,.0001)">平台运营</div>
                 <div class="panel-body">
                     <wb:follow-button uid="6660650753" type="red_4" width="100%" height="64"></wb:follow-button>
                     <div id="wb_follow_btn"></div>
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">分类</div>
+                <div class="panel-heading" style="background:rgba(0,0,0,.0001)">分类</div>
                 <div class="panel-body">
                     {% for v in artcate%}
                     <a style="margin-bottom: 3px" type="button" class="btn btn-primary btn-sm"> {{v.name}}<span
@@ -124,34 +125,32 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">阅读榜</div>
+                <div class="panel-heading" style="background:rgba(0,0,0,.0001)">阅读榜</div>
                 <ul class="list-group">
                     {% for v in pageDataView.items%}
                     <li class="list-group-item">
-                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;{{v.title}}（{{v.viewNum}}）</a>
+                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f">&nbsp;{{v.title}}（{{v.viewNum}}）</a>
                     </li>
                     {%endfor%}
                 </ul>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">热评榜</div>
+                <div class="panel-heading" style="background:rgba(0,0,0,.0001)">热评榜</div>
                 <ul class="list-group">
                     {% for v in pageDataComment.items%}
                     <li class="list-group-item">
-                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f"><span
-                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;{{v.title}}（{{v.commentNum}}）</a>
+                        <a href="{{url_for('home.artDesc',id=v.id,page=1)}}" style="color:#3f3f3f">&nbsp;{{v.title}}（{{v.commentNum}}）</a>
                     </li>
                     {%endfor%}
                 </ul>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">最新科技资讯</div>
+                <div class="panel-heading" style="background:rgba(0,0,0,.0001)">最新科技资讯</div>
                 <ul class="list-group">
                 </ul>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">热门源码</div>
+                <div class="panel-heading" style="background:rgba(0,0,0,.0001)">热门源码</div>
                 <ul class="list-group">
                     <!--                    <li class="list-group-item">-->
                     <!--                        <a href="javascript:;" style="color:#3f3f3f"><span-->

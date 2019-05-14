@@ -87,6 +87,46 @@ def sourceCode():
     return render_template('home/sourceCode.html')
 
 
+@home.route('/sourceCode/java/ssm/')
+def java_ssm():
+    return render_template('home/ssm.html')
+
+
+@home.route('/sourceCode/php/tp3/')
+def php_tp3():
+    return render_template('home/tp3.html')
+
+
+@home.route('/sourceCode/php/tp5/')
+def php_tp5():
+    return render_template('home/tp5.html')
+
+
+@home.route('/sourceCode/python/django/')
+def python_django():
+    return render_template('home/django.html')
+
+
+@home.route('/sourceCode/python/flask/')
+def python_flask():
+    return render_template('home/flask.html')
+
+
+@home.route('/sourceCode/python/tornado/')
+def python_tornado():
+    return render_template('home/tornado.html')
+
+
+@home.route('/sourceCode/android/')
+def android():
+    return render_template('home/android.html')
+
+
+@home.route('/sourceCode/hybrid/')
+def hybrid():
+    return render_template('home/hybrid.html')
+
+
 @home.route('/technologyInfo/')
 def technologyInfo():
     return render_template('home/technologyInfo.html')

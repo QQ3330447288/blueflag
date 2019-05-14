@@ -9,17 +9,21 @@
     .row > .col-md-3 > .panel {
         margin: 1px;
     }
+
+
+
+
+
+
 </style>
 {% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 75px">
     <div class="row">
-        <div class="col-md-12" style="padding:0;">
-            <div class="panel panel-default" style="margin: 0">
-                <div class="panel-heading">关于"{{ key }}"的技术博文，共 {{count}}篇</div>
+        <div class="col-md-9" style="padding:0;">
+            <div class="panel panel-default" style="margin: 0;">
+                <div class="panel-heading" style="background-color: rgba(0,0,0,.0001)">关于"{{ key }}"的技术博文，共 {{count}}篇</div>
             </div>
-        </div>
-        <div class="col-md-12" style="padding:0;">
             <div class="panel panel-default">
                 {% for v in pageData.items %}
                 <div class="panel panel-body">
@@ -45,56 +49,44 @@
                 </div>
                 {% endfor %}
             </div>
+            <div class="text-center">
+                {{pg.page(pageData,'home.searchArt')}}
+            </div>
         </div>
-        <div class="text-center">
-            {{pg.page(pageData,'home.searchArt')}}
+        <div class="col-md-3" style="padding:0">
+            <div class="panel panel-default" style="padding:0px">
+                <div class="panel-heading" style="background-color: rgba(0,0,0,.0001)">热搜</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python巩固
+                            --Python入门 </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python巩固
+                            --Python入门 </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python巩固
+                            --Python入门 </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python巩固
+                            --Python入门 </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="" style="color:#3f3f3f"><span
+                                class="glyphicon glyphicon-list-alt" style="color: #337ab7"></span>&nbsp;&nbsp;Python巩固
+                            --Python入门 </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-
-</div>
 </div>
 {% endblock %}
 {% block js %}
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1753632933" type="text/javascript"
-        charset="utf-8"></script>
-<script>
-    WB2.anyWhere(function (W) {
-        W.widget.followButton({
-            'nick_name': '蓝旗网',  //用户昵称
-            'id': "wb_follow_btn",
-            'show_head': true, //是否显示头像
-            'show_name': true, //是否显示名称
-            'show_cancel': true //是否显示取消关注按钮
-        });
-    });
-</script>
-<script>
-    window._bd_share_config = {
-        common: {
-            bdText: '自定义分享内容',
-            bdDesc: '自定义分享摘要',
-            bdUrl: 'https://www.thanlon.cn',
-            bdPic: '自定义分享图片'
-        },
-        share: [{
-            "bdSize": 24
-        }],
-        slide: [{
-            bdImg: 4,
-            bdPos: "right",
-            bdTop: 100
-        }],
-        image: [{
-            viewType: 'list',
-            viewPos: 'top',
-            viewColor: 'black',
-            viewSize: '24',
-            viewList: ['sqq', 'weixin', 'qzone', 'tsina', 'douban']
-        }],
-        selectShare: [{
-            "bdselectMiniList": ['sqq', 'weixin', 'qzone', 'tsina', 'douban']
-        }]
-    };
-    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
-</script>
 {% endblock %}

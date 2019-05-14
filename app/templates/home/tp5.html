@@ -1,9 +1,7 @@
 {% extends 'home/layout.html' %}
 {% block css %}
 <style>
-.highlight{
-color:#a94442;
-}
+
 </style>
 {% endblock %}
 {% block content %}
@@ -12,13 +10,13 @@ color:#a94442;
         <div class="col-md-12" style="padding:0;">
             <div class="panel panel-default" style="margin: 0">
                 <div class="panel-heading" style="background:#a94442;color:white;font-weight:700">资源共享 / <a href=""
-                                                                                                            style="color:white;font-weight:700">Java项目源码</a>
-                    / <a href="" style="color:white;font-weight:700">Java Web</a></div>
+                                                                                                            style="color:white;font-weight:700">PHP项目源码</a>
+                    / <a href="" style="color:white;font-weight:700">ThinkPHP5.x</a></div>
             </div>
             <div class="panel panel-default text-center">
                 <div class="panel-body ">
                     <ul class="nav nav-tabs  ">
-                        <li role="presentation" class="active dropdown">
+                        <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 Java项目源码 <span class="caret"></span>
@@ -28,7 +26,7 @@ color:#a94442;
                                 <li role="presentation"><a href="{{url_for('home.java_ssm')}}">SSM</a></li>
                             </ul>
                         </li>
-                        <li role="presentation" class="dropdown">
+                        <li role="presentation" class="active dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 PHP项目源码 <span class="caret"></span>
@@ -46,7 +44,7 @@ color:#a94442;
                             <ul class="dropdown-menu">
                                 <li role="presentation"><a href="{{url_for('home.python_django')}}">Django</a></li>
                                 <li role="presentation"><a href="{{url_for('home.python_flask')}}">Flask</a></li>
-                                <li role="presentation"><a href="{{url_for('home.python_tornado')}}">爬虫项目</a></li>
+                                <li role="presentation"><a href="{{url_for('home.python_tornado')}}">Tornado</a></li>
                                 <li role="presentation"><a href="#">网络爬虫</a></li>
                             </ul>
                         </li>
@@ -125,8 +123,7 @@ color:#a94442;
 <script>
     $(document).ready(function () {
         $("#item2").addClass("active_diy");
-        $('#search_form').attr('hidden','hidden');
-        $('#search_resource').removeAttr('hidden')
-    });
+    })
+
 </script>
 {% endblock %}
