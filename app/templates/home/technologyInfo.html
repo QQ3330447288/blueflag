@@ -1,7 +1,9 @@
 {% extends 'home/layout.html' %}
 {% block css %}
 <style>
-
+.navbar-default .navbar-nav>li>a {
+    color: #286090;
+}
 </style>
 {% endblock %}
 {% block content %}
@@ -9,7 +11,7 @@
     <div class="row">
         <div class="col-md-9" style="padding:0;">
             <div class="panel panel-default" style="margin: 0">
-                <div class="panel-heading" style="background:#286090;color:white;font-weight:700">科技资讯 / 最新新闻</div>
+                <div class="panel-heading" style="background:#286090;color:white;font-weight:700">科技资讯 / 最新资讯</div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body ">
@@ -40,6 +42,18 @@
             </div>
         </div>
         <div class="col-md-3" style="padding:0">
+            <div class="panel panel-default" style="padding:0px;margin-bottom:4px">
+                <div class="panel-heading" style="background:#286090;color:white;font-weight:700">资讯分类</div>
+                <ul class="list-group">
+                    {% for v in newscatedata %}
+                    <li class="list-group-item">
+                        <a href="" style="color:#3f3f3f">
+                            {{v.news_cate_name}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
             <div class="panel panel-default" style="padding:0;margin-bottom:4px">
                 <div class="panel-heading" style="background:#286090;color:white;font-weight:700">推荐资讯</div>
                 <ul class="list-group">
@@ -66,31 +80,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="panel panel-default" style="padding:0px;">
-                <div class="panel-heading" style="background:#286090;color:white;font-weight:700">科技资讯分类</div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a href="" style="color:#3f3f3f">
-                            互联网
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="" style="color:#3f3f3f">
-                            人工智能
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="" style="color:#3f3f3f">
-                            大数据
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="" style="color:#3f3f3f">
-                            区块链
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
         </div>
     </div>
 </div>
@@ -120,7 +110,8 @@
         $("#item2").addClass("active_diy");
          $('#search_form').attr('hidden','hidden');
          $('#search_resource').attr('hidden','hidden');
-        $('#search_news').removeAttr('hidden')
+        $('#search_news').removeAttr('hidden');
+
     })
 </script>
 {% endblock %}

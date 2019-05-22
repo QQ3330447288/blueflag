@@ -2,7 +2,7 @@
 from . import home
 from flask import render_template, flash, redirect, url_for, session, request
 from app.home.forms import RegisterForm, LoginForm, AlterPwd, CommentForm, MessageForm
-from app.models import User, UserLoginLog, Comment, Message, Link
+from app.models import User, UserLoginLog, Comment, Message, Link, NewsCate
 import requests
 from werkzeug.security import generate_password_hash
 from app import db
@@ -129,7 +129,8 @@ def hybrid():
 
 @home.route('/technologyInfo/')
 def technologyInfo():
-    return render_template('home/technologyInfo.html')
+    newscatedata = NewsCate.query.all()
+    return render_template('home/technologyInfo.html', newscatedata=newscatedata)
 
 
 @home.route('/disclaimer/')

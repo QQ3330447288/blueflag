@@ -373,3 +373,14 @@ def add_news_cate():
         flash("添加新闻分类成功！", "okey")
         redirect(url_for("admin.add_news_cate"))
     return render_template("admin/addNewsCate.html", form=news_cate_form)
+
+
+@admin.route("/admin/news/cate/list/<int:page>", methods=["GET"])
+@adminLoginRule
+def news_cate_list(page):
+    if page == None:
+        page = 1
+    pageData = NewsCate.query.order_by(
+        NewsCate.addTime.desc()
+    ).paginate(page=page, per_page=10)
+    return render_template("admin/newsList.html", pageData=pageData)
