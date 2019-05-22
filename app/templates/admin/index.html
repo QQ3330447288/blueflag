@@ -1,16 +1,48 @@
 {% extends 'admin/layout.html' %}
 {% block css %}{% endblock %}
 {% block content %}
-
-
-
-
+<section class="content-header">
+    <h1>蓝色旗帜后台管理系统</h1>
+    <ol class="breadcrumb">
+        <li> 首页</a></li>
+        <li class="active">控制面板</li>
+    </ol>
+</section>
+<section class="content" id="showcontent">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <h4>当前系统时间：<span id="show"></span></h4>
+                <br>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
 {% block js %}
 <script>
     $(document).ready(function () {
         $("#g-1").addClass("active");
         $("#g-1-1").addClass("active");
+        showTime();
     });
+    function showTime() {
+　　　　var nowTime = new Date();
+　　　　var years = nowTime.getFullYear();
+　　　　var mouths = nowTime.getMonth();
+　　　　var days = nowTime.getDate();
+　　　　var hours = nowTime.getHours();
+　　　　var minites = nowTime.getMinutes();
+　　　　var seconds = nowTime.getSeconds();
+　　　　var time = years+"年";
+　　　　time += (mouths+1)+"月"+days+"日";
+　　　　time += (hours<10?"0":"")+hours;
+　　　　time += (minites<10?":0":":") + minites;
+　　　　time += (seconds<10?":0":":") + seconds;
+　　　　time += (hours>12)?"PM":"AM";
+　　　　document.getElementById("show").innerHTML = time;
+　　　　setTimeout("showTime()",1000);
+　　　　}
+
 </script>
 {% endblock %}

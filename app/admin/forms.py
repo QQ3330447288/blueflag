@@ -300,3 +300,29 @@ class LinkForm(FlaskForm):
             "class": "btn btn-primary"
         }
     )
+
+
+# # add technology news
+# class NewsForm(FlaskForm):
+#
+
+# add technology news category
+class NewsCateForm(FlaskForm):
+    name = StringField(
+        label='新闻分类',
+        validators=[
+            DataRequired(),
+        ],
+        render_kw={
+            'class': 'form-control',
+            'autofocus': 'autofocus',
+            'placeholder': '请输入新闻分类',
+            'required': 'required'
+        }
+    )
+    submit = SubmitField(
+    '添加',
+    render_kw={
+        'class': 'btn btn-log btn-primary btn-block'
+    }
+)

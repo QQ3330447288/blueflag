@@ -122,7 +122,16 @@ class Link(db.Model):
     third = db.Column(db.Text)
     forth = db.Column(db.Text)
     fifth = db.Column(db.Text)
-#
+
+
+# # 科技新闻分类表
+class NewsCate(db.Model):
+    __tablename__ = 'newscate'
+    __table_args__ = {"useexisting": True}
+    id = db.Column(db.Integer, primary_key=True)  # id
+    news_cate_name = db.Column(db.String(100), unique=True)  # name
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # date and time
+
 # if __name__ == '__main__':
 #     db.create_all()
 
