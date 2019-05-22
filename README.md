@@ -1,0 +1,2 @@
+# blueflag
+# Django Project
