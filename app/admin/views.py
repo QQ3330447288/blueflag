@@ -384,3 +384,11 @@ def news_cate_list(page):
         NewsCate.addTime.desc()
     ).paginate(page=page, per_page=10)
     return render_template("admin/newsList.html", pageData=pageData)
+
+# Add news
+@admin.route("/admin/news/add/", methods=["GET", "POST"])
+@adminLoginRule
+def add_news():
+
+    return render_template("admin/addNews.html")
+

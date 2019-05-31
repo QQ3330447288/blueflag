@@ -124,16 +124,33 @@ class Link(db.Model):
     fifth = db.Column(db.Text)
 
 
+class News(db.Model):
+    __tablename__ = 'news'
+    __table_args__ = {"useexisting": True}
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), unique=True)
+    addTime = db.Column(db.DateTime, index=True, default=datetime.now())
+    publisher = db.Column(db.String(30), unique=True)
+    source = db.Column(db.Text)
+    content = db.Column(db.Text)
+    copyrightNotice = db.Column(db.Text)
+    cate_id = db.Column(db.Integer, db.ForeignKey('newscate.id'))
+
+
 # # 科技新闻分类表
+
+
 class NewsCate(db.Model):
     __tablename__ = 'newscate'
     __table_args__ = {"useexisting": True}
     id = db.Column(db.Integer, primary_key=True)  # id
     news_cate_name = db.Column(db.String(100), unique=True)  # name
     addTime = db.Column(db.DateTime, index=True, default=datetime.now)  # date and time
+    news = db.relationship("News", backref='newscate')
 
-# if __name__ == '__main__':
-#     db.create_all()
+
+if __name__ == '__main__':
+    db.create_all()
 
 # if __name__ == '__main__':
 #     from werkzeug.security import generate_password_hash

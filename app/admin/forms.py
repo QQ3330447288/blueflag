@@ -304,7 +304,6 @@ class LinkForm(FlaskForm):
 
 # # add technology news
 # class NewsForm(FlaskForm):
-#
 
 # add technology news category
 class NewsCateForm(FlaskForm):
@@ -321,8 +320,30 @@ class NewsCateForm(FlaskForm):
         }
     )
     submit = SubmitField(
-    '添加',
-    render_kw={
-        'class': 'btn btn-log btn-primary btn-block'
-    }
-)
+        '添加',
+        render_kw={
+            'class': 'btn btn-log btn-primary btn-block'
+        }
+    )
+
+
+# add technology news
+class NewsForm(FlaskForm):
+    title = StringField(
+        label='',
+        validators=[
+            DataRequired(),
+        ],
+        render_kw={
+            'class': 'form-control',
+            'autofocus': 'autofocus',
+            'placeholder': '请输入新闻标题',
+            'required': 'required'
+        }
+    )
+    submit = SubmitField(
+        '添加',
+        render_kw={
+            'class': 'btn btn-primary'
+        }
+    )
