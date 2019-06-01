@@ -10,7 +10,7 @@ class RegisterForm(FlaskForm):
         label='用户名',
         validators=[
             DataRequired(),
-            Regexp('^[a-zA-Z][a-zA-Z0-9_]{4,15}$', message="必须字母开头,5-16字节,允许字母数字下划线!")
+            Regexp('^[a-zA-Z][a-zA-Z0-9_]{0,15}$', message="必须字母开头,16字节以内,允许字母数字下划线!")
         ],
         render_kw={
             'class': 'form-control',

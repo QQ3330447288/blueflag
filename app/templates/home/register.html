@@ -21,6 +21,7 @@
                                 <label for=""><span
                                         class="glyphicon glyphicon-user"></span>&nbsp;{{form.name.label}}</label>
                                 {{form.name}}
+                                <span style="color:red">用户名必须以字母开头!</span>
                                 {% for err in form.name.errors%}
                                 <div class="col-md-12" style="color: red">
                                     {{err}}
@@ -41,6 +42,7 @@
                                 <label for=""><span
                                         class="glyphicon glyphicon-lock"></span>&nbsp;{{form.pwd.label}}</label>
                                 {{form.pwd}}
+                                   <span style="color:red">为了账号的安全,密码必须是大小写字母和数字的组合,不能使用特殊字符,至少6个字符!</span>
                                 {% for err in form.pwd.errors%}
                                 <div class="col-md-12" style="color: red">
                                     {{err}}
