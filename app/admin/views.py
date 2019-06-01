@@ -1,9 +1,10 @@
 # coding:utf8
 from . import admin
-from app.admin.forms import LoginForm, ArtCateForm, ArtForm, AuthForm, RoleForm, AdminForm, LinkForm, NewsCateForm
+from app.admin.forms import LoginForm, ArtCateForm, ArtForm, AuthForm, RoleForm, AdminForm, LinkForm, NewsCateForm, \
+    NewsForm
 from flask import render_template, flash, redirect, url_for, session, request
 from functools import wraps
-from app.models import Admin, Cate, Article, User, Auth, Role, Link, Message, Comment, NewsCate
+from app.models import Admin, Cate, Article, User, Auth, Role, Link, Message, Comment, NewsCate, News
 from app import db
 from werkzeug.utils import secure_filename
 import os, datetime, uuid
@@ -383,12 +384,46 @@ def news_cate_list(page):
     pageData = NewsCate.query.order_by(
         NewsCate.addTime.desc()
     ).paginate(page=page, per_page=10)
-    return render_template("admin/newsList.html", pageData=pageData)
+    return render_template("admin/newsCateList.html", pageData=pageData)
+
 
 # Add news
 @admin.route("/admin/news/add/", methods=["GET", "POST"])
 @adminLoginRule
 def add_news():
+    news_form = NewsForm()
+    if news_form.validate_on_submit():
+        data = news_form.data
+        news_count = News.query.filter_by(title=data['title']).count()
+        if news_count >= 1:
+            flash('此条资讯已经存在！', 'error')
+            return redirect(url_for('admin.add_news'))
+        else:
+            news = News(
+                cate_id=data['newsCateId'],
+                title=data['title'],
+                content=data['content'],
+                source=data['source'],
+                copyrightNotice=data['copyrightNotice'],
+                publisher=data['publisher']
+            )
+        db.session.add(news)
+        db.session.commit()
+        flash("添加资讯成功！", "okey")
+        redirect(url_for("admin.add_news"))
+    return render_template("admin/addNews.html", form=news_form)
 
-    return render_template("admin/addNews.html")
 
+@admin.route("/admin/news/list/<int:page>", methods=["GET"])
+@adminLoginRule
+def news_list(page):
+    if page == None:
+        page = 1
+    pageData = News.query.join(
+        NewsCate
+    ).filter(
+        News.cate_id == NewsCate.id
+    ).order_by(
+        News.addTime.desc()
+    ).paginate(page=page, per_page=10)
+    return render_template("admin/newsList.html", pageData=pageData)

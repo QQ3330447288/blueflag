@@ -149,8 +149,8 @@ class NewsCate(db.Model):
     news = db.relationship("News", backref='newscate')
 
 
-if __name__ == '__main__':
-    db.create_all()
+# if __name__ == '__main__':
+#     db.create_all()
 
 # if __name__ == '__main__':
 #     from werkzeug.security import generate_password_hash

@@ -2,11 +2,12 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField, FileField, SelectMultipleField
 from wtforms.validators import DataRequired, EqualTo
-from app.models import Cate, Auth, Role
+from app.models import Cate, Auth, Role, NewsCate
 
 cate = Cate.query.all()
 authlst = Auth.query.all()
 roleLst = Role.query.all()
+news_cate = NewsCate.query.all()
 
 
 class LoginForm(FlaskForm):
@@ -329,20 +330,83 @@ class NewsCateForm(FlaskForm):
 
 # add technology news
 class NewsForm(FlaskForm):
+    newsCateId = SelectField(
+        label="分类",
+        validators=[
+            DataRequired("请选择咨询分类！")
+        ],
+        coerce=int,
+        choices=[(v.id, v.news_cate_name) for v in news_cate],
+        description="分类",
+        render_kw={
+            "class": "form-control"
+        }
+    )
     title = StringField(
-        label='',
+        label='咨询标题',
         validators=[
             DataRequired(),
         ],
         render_kw={
             'class': 'form-control',
             'autofocus': 'autofocus',
-            'placeholder': '请输入新闻标题',
+            'placeholder': '请输入咨询标题',
             'required': 'required'
         }
     )
+    content = TextAreaField(
+        label="内容",
+        validators=[
+            DataRequired("请输入咨询内容！")
+        ],
+        description="请输入咨询内容",
+        render_kw={
+            "class": "form-control",
+            "id": "input_info",
+            "rows": 3,
+            "maxlength": "150",
+        }
+    )
+    source = TextAreaField(
+        label='来源',
+        validators=[
+            DataRequired("请输入资讯来源！")
+        ],
+        description="请输入资讯来源",
+        render_kw={
+            "class": "form-control",
+            "id": "input_info",
+            "rows": 3,
+            "maxlength": "150",
+        }
+    )
+    copyrightNotice = TextAreaField(
+        label='版权声明',
+        validators=[
+            # DataRequired("请输入版权声明！")
+        ],
+        description="请输入版权声明",
+        render_kw={
+            "class": "form-control",
+            "id": "input_info",
+            "rows": 3,
+            "maxlength": "150",
+        }
+    )
+    publisher = StringField(
+        label='发布者',
+        validators=[
+            DataRequired(),
+        ],
+        render_kw={
+            'class': 'form-control',
+            'autofocus': 'autofocus',
+            'placeholder': '请输入发布者姓名',
+            'required': 'required',
+        }
+    )
     submit = SubmitField(
-        '添加',
+        '发布',
         render_kw={
             'class': 'btn btn-primary'
         }

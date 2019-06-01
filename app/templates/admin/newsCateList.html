@@ -6,7 +6,7 @@
     <h1>蓝色旗帜后台管理系统</h1>
     <ol class="breadcrumb">
         <li><a href="#"> 资讯管理</a></li>
-        <li class="active">资讯列表</li>
+        <li class="active">资讯分类列表</li>
     </ol>
 </section>
 <section class="content" id="showcontent">
@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">资讯列表</h3>
+                    <h3 class="box-title">资讯分类列表</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control pull-right"
@@ -39,18 +39,14 @@
                         <tbody>
                         <tr>
                             <th>编号</th>
-                            <th>资讯分类</th>
-                            <th>资讯标题</th>
-                            <th>发布者</th>
-                            <th>发布时间</th>
+                            <th>分类名称</th>
+                            <th>添加时间</th>
                             <th>操作</th>
                         </tr>
                         {% for v in pageData.items %}
                         <tr>
                             <td>{{v.id}}</td>
-                            <td>{{v.newscate.news_cate_name}}</td>
-                            <td>{{v.title}}</td>
-                            <td>{{v.publisher}}</td>
+                            <td>{{v.news_cate_name}}</td>
                             <td>{{v.addTime}}</td>
                             <td>
                                 <a href="" class="label label-success">编辑</a>
@@ -62,7 +58,7 @@
                     </table>
                 </div>
                 <div class="box-footer clearfix ">
-                    {{pg.page(pageData,'admin.news_list')}}
+                    {{pg.page(pageData,'admin.news_cate_list')}}
                 </div>
             </div>
         </div>
@@ -75,6 +71,5 @@
         $("#g-14").addClass("active");
         $("#g-14-2").addClass("active");
     });
-
 </script>
 {% endblock %}

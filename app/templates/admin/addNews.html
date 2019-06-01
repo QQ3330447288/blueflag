@@ -29,10 +29,64 @@
                             {{ msg }}
                         </div>
                         {% endfor %}
-                        dd
+                        <div class="form-group">
+                            <label for="input_name">{{form.newsCateId.label}}</label>
+                            {{form.newsCateId}}
+                            {% for err in form.newsCateId.errors %}
+                            <div class="col-md-12">
+                                <font style="color:red">{{ err }}</font>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="input_name">{{form.title.label}}</label>
+                            {{form.title}}
+                            {% for err in form.title.errors %}
+                            <div class="col-md-12">
+                                <font style="color:red">{{ err }}</font>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="input_name">{{form.source.label}}</label>
+                            {{form.source}}
+                            {% for err in form.source.errors %}
+                            <div class="col-md-12">
+                                <font style="color:red">{{ err }}</font>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="input_name">{{form.copyrightNotice.label}}</label>
+                            {{form.source}}
+                            {% for err in form.copyrightNotice.errors %}
+                            <div class="col-md-12">
+                                <font style="color:red">{{ err }}</font>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="input_name">{{form.publisher.label}}</label>
+                            {{form.publisher}}
+                            {% for err in form.publisher.errors %}
+                            <div class="col-md-12">
+                                <font style="color:red">{{ err }}</font>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="input_name">{{form.content.label}}</label>
+                            {{form.content}}
+                            {% for err in form.content.errors %}
+                            <div class="col-md-12">
+                                <font style="color:red">{{ err }}</font>
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
                     <div class="box-footer">
-
+                        {{form.csrf_token}}
+                        {{form.submit}}
                     </div>
                 </form>
             </div>
@@ -63,6 +117,12 @@
     //         path: "{{url_for('static',filename='mdmaster/lib/')}}"
     //     });
     // });
+
+
+
+
+
+
 
 </script>
 {% endblock %}

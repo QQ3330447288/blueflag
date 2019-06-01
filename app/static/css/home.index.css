@@ -1,0 +1,7 @@
+  .row > .col-md-9 > .panel {
+        margin: 1px;
+    }
+
+    .row > .col-md-3 > .panel {
+        margin: 1px;
+    }
